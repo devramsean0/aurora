@@ -1,4 +1,4 @@
-{ inputs, nixosModules, useCustomNixpkgsNixosModule, accountsForSystem, accountFromUsername, hostname, ... }:
+{ inputs, nixosModules, useCustomNixpkgsNixosModule, useNixvimModule, accountsForSystem, accountFromUsername, hostname, ... }:
 let
   system = "x86_64-linux";
   canLogin = [ "sean" ];
@@ -16,6 +16,7 @@ in
 
     modules = with nixosModules; [
       useCustomNixpkgsNixosModule
+      useNixvimModule
 
       {
         networking.hostName = hostname;
@@ -27,6 +28,7 @@ in
       fileSystems
       virtualisation
       desktop
+      shell
       git
       gpg
 

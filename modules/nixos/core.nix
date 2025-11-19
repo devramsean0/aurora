@@ -3,8 +3,16 @@ let
   trustedUsernames = builtins.filter (username: (accountFromUsername username).trusted) usernames;
 in
 {
+  imports = [
+    ./desktopApps/apps/vim.nix
+  ];
   # Delete the /tmp directory every boot.
   boot.tmp.cleanOnBoot = true;
+
+  # Add Fonts
+  fonts.packages = with pkgs; [
+    nerd-fonts.caskaydia-cove
+  ];
 
   # Set regonal settings.
   networking.networkmanager.enable = true;
@@ -41,6 +49,15 @@ in
   system.switch = {
     enable = false;
     enableNg = true;
+  };
+
+  # Configure SSH Globally
+  services.openssh = {
+    enable = true;
+    # require public key authentication for better security
+    settings.PasswordAuthentication = false;
+    settings.KbdInteractiveAuthentication = false;
+    #settings.PermitRootLogin = "yes";
   };
 
   security.polkit.enable = true;

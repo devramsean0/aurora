@@ -10,9 +10,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixvim = {
+      url = "github:nix-community/nixvim/nixos-25.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs:
+  outputs = { nixpkgs, nixpkgs-unstable, home-manager, nixvim, ... }@inputs:
     let
       # Which accounts can access which systems is handled per-system.
       accounts = [
@@ -106,6 +110,9 @@
         };
       };
 
+      # A mini-module that imports nixvim at the system level.
+      useNixvimModule = inputs.nixvim.nixosModules.nixvim;
+
       # A function that returns for a given system's name:
       # - its NixOS configuration (nixosConfiguration)
       # - its system architecture (system)
@@ -113,7 +120,7 @@
       # - if the system uses home-manager (hasHomeManager)
       callSystem = (hostname: import ./systems/${hostname} {
         # Pass on the inputs and nixosModules.
-        inherit inputs nixosModules hostname useCustomNixpkgsNixosModule accountFromUsername;
+        inherit inputs nixosModules hostname useCustomNixpkgsNixosModule useNixvimModule accountFromUsername;
 
         # Pass on a function that returns a filtered list of accounts based on an array of usernames.
         accountsForSystem = canLogin: builtins.filter (account: builtins.elem account.username canLogin) accounts;
