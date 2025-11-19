@@ -4,7 +4,10 @@
     qemu
   ];
   programs.virt-manager.enable = true;
-  users.groups.libvirtd.members = [ "sean" ];
-  virtualisation.libvirtd.enable = true;
-  virtualisation.spiceUSBRedirection.enable = true;
+
+  virtualisation = {
+    libvirtd.enable = true;
+    spiceUSBRedirection.enable = true;
+    docker.enable = true;
+  };
 }

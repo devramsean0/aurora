@@ -72,7 +72,7 @@ in
         isNormalUser = true;
         # password = "demo";
         hashedPassword = account.hashedPassword;
-        extraGroups = (if account.trusted then [ "wheel" "dialout" ] else [ ]);
+        extraGroups = (if account.trusted then [ "wheel" "dialout" ] else [ ]) ++ (if builtins.isNull account.groups != true then account.groups else [ ]);
       }
     );
   users.mutableUsers = false;

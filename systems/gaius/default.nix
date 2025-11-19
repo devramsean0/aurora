@@ -34,13 +34,14 @@ in
       gpg
 
       hardware.audio
+      hardware.battery
+      hardware.bluetooth
       hardware.yubikey
 
       desktopApps.core
       desktopApps.desktop
 
       ./hardware.nix
-      ./config.nix
 
     ] ++ (if hasHomeManager then [ nixosModules.homeManager ] else [ ]);
   };
