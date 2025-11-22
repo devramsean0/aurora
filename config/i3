@@ -100,7 +100,7 @@ bar {
   font pango:monospace 8.000000
   position top
   status_command i3blocks -c $HOME/.config/i3blocks/top
-  i3bar_command /nix/store/9q3l6b01f9lpzyzmysd1cn1ijvmjcqp7-i3-4.24/bin/i3bar
+  i3bar_command i3bar
 }
 exec --no-startup-id nm-applet
 
