@@ -113,5 +113,11 @@
 
       # Gets the NixOS configuration for every system in ./systems.
       nixosConfigurations = inputs.nixpkgs.lib.genAttrs systemNames (hostname: (callSystem hostname).nixosConfiguration);
+
+      # Expose packages, specifically the ISO image for install-iso
+      packages.x86_64-linux = {
+        # Build the install-iso as a package
+        install-iso = (callSystem "install-iso").nixosConfiguration.config.system.build.isoImage;
+      };
     };
 }
