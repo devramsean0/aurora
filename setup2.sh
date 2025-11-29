@@ -14,9 +14,9 @@ read -p "Target Config (ex: gaius) " config
   parted /dev/$drive -- set 3 esp on
   echo "Formatting"
 
-  drive1="$drive"1
-  drive2="$drive"2
-  drive3="$drive"3
+  drive1="$drive"n1
+  drive2="$drive"n2
+  drive3="$drive"n3
 
   # Setup Encryption
   cryptsetup luksFormat /dev/$drive1
