@@ -1,5 +1,6 @@
 { ... }:
 {
+  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-label/encryptedroot";
   fileSystems."/" =
     {
       device = "/dev/disk/by-label/nixos";
