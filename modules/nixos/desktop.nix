@@ -39,8 +39,11 @@
   services.displayManager.defaultSession = "none+i3";
 
   # Create i3blocks config directory and symlink for each user
-  systemd.tmpfiles.rules = lib.flatten (map (username: [
-    "d /home/${username}/.config/i3blocks 0755 ${username} users -"
-    "L+ /home/${username}/.config/i3blocks/top - - - - ${../../config/i3-blocks}"
-  ]) usernames);
+  # systemd.tmpfiles.rules = lib.flatten (map (username: [
+  #  "d /home/${username}/.config/i3blocks 777 ${username} users -"
+  #  "L+ /home/${username}/.config/i3blocks/top - - - - ${../../config/i3-blocks}"
+  #  "z /home/${username}/.config/i3blocks/top 744 named ${username} -"
+  #]) usernames);
+
+  environment.etc."config/i3-blocks".source = ../../config/i3-blocks;
 }

@@ -99,7 +99,7 @@ mode "resize" {
 bar {
   font pango:monospace 8.000000
   position top
-  status_command i3blocks -c $HOME/.config/i3blocks/top
+  status_command i3blocks -c /etc/config/i3-blocks
   i3bar_command i3bar
 }
 exec --no-startup-id nm-applet
