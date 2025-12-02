@@ -48,13 +48,13 @@ mount -o umask=077 /dev/disk/by-label/boot /mnt/boot
 swapon "$drive2"
 
   mkdir -p /mnt/etc
-  mkdir -p /config
-  chmod 777 /config
-  git clone https://github.com/devramsean0/aurora /config
-  ln -s /config /mnt/etc/nixos
+  mkdir -p /mnt/config
+  chmod 777 /mnt/config
+  git clone https://github.com/devramsean0/aurora /mnt/config
+  ln -s /mnt/config /mnt/etc/nixos
 
-  if [ -d /config ]; then
-    nixos-install --flake /config#$config;
+  if [ -d /mnt/config ]; then
+    nixos-install --flake /mnt/config#$config;
   else
     echo "NixOS Config not found!";
     exit
