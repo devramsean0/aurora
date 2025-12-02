@@ -2,6 +2,7 @@
 let
   system = "x86_64-linux";
   canLogin = [ "sean" ];
+  hasHomeManager = true;
 in
 {
   nixosConfiguration = inputs.nixpkgs.lib.nixosSystem {
@@ -42,7 +43,7 @@ in
 
       ./hardware.nix
 
-    ];
+    ] ++ (if hasHomeManager then [nixosModules.homeManager ] else [ ]);
   };
-  inherit system canLogin;
+  inherit system canLogin hasHomeManager;
 }

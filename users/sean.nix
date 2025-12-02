@@ -4,7 +4,6 @@
     useCustomNixpkgsNixosModule
 
     git
-    zsh
   ];
 
   home.username = account.username;
