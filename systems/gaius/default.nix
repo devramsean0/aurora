@@ -40,7 +40,8 @@ in
 
       desktopApps.core
       desktopApps.desktop
-
+      desktopApps.apps.vscode
+      
       ./hardware.nix
 
     ] ++ (if hasHomeManager then [nixosModules.homeManager ] else [ ]);

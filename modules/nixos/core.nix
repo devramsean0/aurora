@@ -45,12 +45,6 @@ in
       })
       config.nix.registry;
 
-  # Use next-gen nixos switch.
-  system.switch = {
-    enable = false;
-    enableNg = true;
-  };
-
   # Configure SSH Globally
   services.openssh = {
     enable = true;

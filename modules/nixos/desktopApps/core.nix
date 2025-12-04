@@ -12,6 +12,5 @@
     acpi
     pkg-config
     gnupg
-    pinentry
   ];
 }

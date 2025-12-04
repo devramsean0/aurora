@@ -7,11 +7,11 @@ command=echo "Brightness: $(xbacklight -get | cut -d '.' -f 1)%"
 interval=1
 
 [disk]
-command=echo "Disk: $(df -h / | grep / | awk '{print $5}')%"
+command=echo "Disk: $(df -h / | grep / | awk '{print $5}')"
 interval=1
 
 [memory]
-command=echo "Memory: $(free -h | grep Mem | awk '{print $3}')%"
+command=echo "Memory: $(free -h | grep Mem | awk '{print $3}')"
 interval=1
 
 [time_date]

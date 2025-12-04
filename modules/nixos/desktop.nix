@@ -33,7 +33,7 @@
         xorg.xbacklight
       ];
       configFile = ../../config/i3;
-      package = pkgs.i3-gaps;
+      package = pkgs.i3;
     };
   };
   services.displayManager.defaultSession = "none+i3";
