@@ -40,7 +40,6 @@ in
 
       desktopApps.core
       desktopApps.desktop
-      desktopApps.apps.vscode
       
       ./hardware.nix
 

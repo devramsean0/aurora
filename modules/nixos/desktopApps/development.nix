@@ -7,6 +7,6 @@
 {
   imports = [
     ./apps/postgresql.nix
-    
+    ./apps/vscode.nix
   ];
 }

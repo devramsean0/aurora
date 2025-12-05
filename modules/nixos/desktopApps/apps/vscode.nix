@@ -7,7 +7,7 @@
       wakatime.vscode-wakatime
       rust-lang.rust-analyzer
       jnoortheen.nix-ide
-      
+      github.copilot-chat 
     ];
   };
 }

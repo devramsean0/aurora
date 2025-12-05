@@ -2,7 +2,6 @@
 {
   imports = with homeManagerModules; [
     useCustomNixpkgsNixosModule
-
     git
   ];
 

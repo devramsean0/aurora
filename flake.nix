@@ -6,7 +6,7 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
-    	url = "github:nix-community/home-manager/release-25.05";
+    	url = "github:nix-community/home-manager/release-25.11";
 	inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -23,7 +23,7 @@
         {
           username = "sean";
           realname = "Sean Outram";
-          email = "me@edwardh.dev";
+          email = "me@sean.cyou";
           # profileicon = ./users/headb.png;
           sshkeys = [
             # TODO: Add SSH keys
@@ -129,7 +129,7 @@
       # Gets the NixOS configuration for every system in ./systems.
       nixosConfigurations = inputs.nixpkgs.lib.genAttrs systemNames (hostname: (callSystem hostname).nixosConfiguration);
 
-      homeConfigurations = inputs.nixpkgs.genAttrs usernamesAtHostsWithHomeManager (username-hostname:
+      homeConfigurations = inputs.nixpkgs.lib.genAttrs usernamesAtHostsWithHomeManager (username-hostname:
       	let
 	      username-hostname-split = builtins.split "@" username-hostname;
 	      username = builtins.elemAt username-hostname-split 0;
