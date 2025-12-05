@@ -1,0 +1,16 @@
+name: CI
+on:
+  workflow_dispatch:
+jobs:
+  build-iso:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        iso: ["install-iso", "desktop-iso"]
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Nix
+        uses: cachix/install-nix-action@v31.8.4
+      - name: Build ISO
+        run: nix build --extra-experimental-features flakes --extra-experimental-features nix-command \#${{matrix.iso}}
