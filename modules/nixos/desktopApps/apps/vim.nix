@@ -6,7 +6,6 @@
     lsp.servers = {
       astro.enable = true;
       cmake.enable = true;
-      copilot.enable = true;
       html.enable = true;
       markdown_oxide.enable = true;
       tailwindcss.enable = true;
