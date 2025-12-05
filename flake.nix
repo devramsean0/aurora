@@ -149,6 +149,7 @@
       packages.x86_64-linux = {
         # Build the install-iso as a package
         install-iso = (callSystem "install-iso").nixosConfiguration.config.system.build.isoImage;
+        desktop-iso = (callSystem "desktop-iso").nixosConfiguration.config.system.build.isoImage;
       };
     };
 }
