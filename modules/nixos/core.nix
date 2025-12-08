@@ -1,4 +1,12 @@
-{ inputs, lib, config, pkgs, usernames, accountFromUsername, ... }:
+{
+  inputs,
+  lib,
+  config,
+  pkgs,
+  usernames,
+  accountFromUsername,
+  ...
+}:
 let
   trustedUsernames = builtins.filter (username: (accountFromUsername username).trusted) usernames;
 in
@@ -33,17 +41,16 @@ in
   };
 
   # Add each input as a flake registry to make nix commands consistent.
-  nix.registry = lib.mkOverride 10 ((lib.mapAttrs (_: flake: { inherit flake; })) ((lib.filterAttrs (_: lib.isType "flake")) inputs));
+  nix.registry = lib.mkOverride 10 (
+    (lib.mapAttrs (_: flake: { inherit flake; })) ((lib.filterAttrs (_: lib.isType "flake")) inputs)
+  );
 
   # Add each input to the system channels, to make nix-command consistent too.
   nix.nixPath = [ "/etc/nix/path" ];
-  environment.etc =
-    lib.mapAttrs'
-      (name: value: {
-        name = "nix/path/${name}";
-        value.source = value.flake;
-      })
-      config.nix.registry;
+  environment.etc = lib.mapAttrs' (name: value: {
+    name = "nix/path/${name}";
+    value.source = value.flake;
+  }) config.nix.registry;
 
   # Configure SSH Globally
   services.openssh = {
@@ -56,19 +63,29 @@ in
 
   security.polkit.enable = true;
 
-  users.users = lib.genAttrs usernames
-    (username:
-      let
-        account = accountFromUsername username;
-      in
-      {
-        description = account.realname;
-        isNormalUser = true;
-        # password = "demo";
-        hashedPassword = account.hashedPassword;
-        extraGroups = (if account.trusted then [ "wheel" "dialout" ] else [ ]) ++ (if builtins.isNull account.groups != true then account.groups else [ ]);
-      }
-    );
+  users.users = lib.genAttrs usernames (
+    username:
+    let
+      account = accountFromUsername username;
+    in
+    {
+      description = account.realname;
+      isNormalUser = true;
+      # password = "demo";
+      hashedPassword = account.hashedPassword;
+      extraGroups =
+        (
+          if account.trusted then
+            [
+              "wheel"
+              "dialout"
+            ]
+          else
+            [ ]
+        )
+        ++ (if builtins.isNull account.groups != true then account.groups else [ ]);
+    }
+  );
   users.mutableUsers = false;
   networking.domain = lib.mkDefault "lan";
 }

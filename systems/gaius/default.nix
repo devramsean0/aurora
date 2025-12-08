@@ -1,4 +1,13 @@
-{ inputs, nixosModules, useCustomNixpkgsNixosModule, useNixvimModule, accountsForSystem, accountFromUsername, hostname, ... }:
+{
+  inputs,
+  nixosModules,
+  useCustomNixpkgsNixosModule,
+  useNixvimModule,
+  accountsForSystem,
+  accountFromUsername,
+  hostname,
+  ...
+}:
 let
   system = "x86_64-linux";
   canLogin = [ "sean" ];
@@ -14,36 +23,39 @@ in
       usernames = canLogin;
     };
 
-    modules = with nixosModules; [
-      useCustomNixpkgsNixosModule
-      useNixvimModule
+    modules =
+      with nixosModules;
+      [
+        useCustomNixpkgsNixosModule
+        useNixvimModule
 
-      {
-        networking.hostName = hostname;
-        system.stateVersion = "25.05";
-      }
+        {
+          networking.hostName = hostname;
+          system.stateVersion = "25.05";
+        }
 
-      core
-      bootloader
-      fileSystems
-      tailscale
-      virtualisation
-      desktop
-      shell
-      git
-      gpg
+        core
+        bootloader
+        fileSystems
+        tailscale
+        virtualisation
+        desktop
+        shell
+        git
+        gpg
 
-      hardware.audio
-      hardware.battery
-      hardware.bluetooth
-      hardware.yubikey
+        hardware.audio
+        hardware.battery
+        hardware.bluetooth
+        hardware.yubikey
 
-      desktopApps.core
-      desktopApps.desktop
-      
-      ./hardware.nix
+        desktopApps.core
+        desktopApps.desktop
 
-    ] ++ (if hasHomeManager then [nixosModules.homeManager ] else [ ]);
+        ./hardware.nix
+
+      ]
+      ++ (if hasHomeManager then [ nixosModules.homeManager ] else [ ]);
   };
   inherit system canLogin hasHomeManager;
 }

@@ -1,4 +1,13 @@
-{ inputs, nixosModules, useCustomNixpkgsNixosModule, useNixvimModule, accountsForSystem, accountFromUsername, hostname, ... }:
+{
+  inputs,
+  nixosModules,
+  useCustomNixpkgsNixosModule,
+  useNixvimModule,
+  accountsForSystem,
+  accountFromUsername,
+  hostname,
+  ...
+}:
 let
   system = "x86_64-linux";
   canLogin = [ "sean" ];

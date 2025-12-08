@@ -6,8 +6,8 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
-    	url = "github:nix-community/home-manager/release-25.11";
-    	inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/home-manager/release-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixvim = {
@@ -16,7 +16,14 @@
     };
   };
 
-  outputs = { nixpkgs, nixpkgs-unstable, home-manager, nixvim, ... }@inputs:
+  outputs =
+    {
+      nixpkgs,
+      nixpkgs-unstable,
+      home-manager,
+      nixvim,
+      ...
+    }@inputs:
     let
       # Which accounts can access which systems is handled per-system.
       accounts = [
@@ -31,7 +38,7 @@
           # The first GPG key is used as the default for signing git commits.
           gpgkeys = [
             # TODO: Add GPG keys
-	    "F5BEFD69E00A6916E3038E64433C1F3597F06C92"
+            "F5BEFD69E00A6916E3038E64433C1F3597F06C92"
           ];
           groups = [
             "libvirtd"
@@ -43,17 +50,16 @@
 
       # Packages in nixpkgs that I want to override.
       nixpkgs-overlay = (
-        final: prev:
-          rec {
-            # Make pkgs.unstable.* point to nixpkgs unstable branch.
-            unstable = import inputs.nixpkgs-unstable {
-              system = final.system;
-              config = {
-                allowUnfree = true;
-              };
+        final: prev: rec {
+          # Make pkgs.unstable.* point to nixpkgs unstable branch.
+          unstable = import inputs.nixpkgs-unstable {
+            system = final.system;
+            config = {
+              allowUnfree = true;
             };
-	    home-manager = inputs.home-manager.packages.${final.system}.default;
-          }
+          };
+          home-manager = inputs.home-manager.packages.${final.system}.default;
+        }
       );
 
       # Configuration for nixpkgs.
@@ -62,13 +68,17 @@
       };
 
       # An array of every system folder in ./systems.
-      systemNames = builtins.attrNames (inputs.nixpkgs.lib.filterAttrs (path: type: type == "directory") (builtins.readDir ./systems));
+      systemNames = builtins.attrNames (
+        inputs.nixpkgs.lib.filterAttrs (path: type: type == "directory") (builtins.readDir ./systems)
+      );
 
       # Recursively find all .nix files in a directory and return them as a nested attribute set.
-      findModules = dir:
+      findModules =
+        dir:
         let
           entries = builtins.readDir dir;
-          processEntry = name: type:
+          processEntry =
+            name: type:
             let
               path = dir + "/${name}";
             in
@@ -81,7 +91,9 @@
             else
               { };
         in
-        inputs.nixpkgs.lib.foldl' (acc: entry: acc // (processEntry entry.name entry.value)) { } (inputs.nixpkgs.lib.mapAttrsToList (name: value: { inherit name value; }) entries);
+        inputs.nixpkgs.lib.foldl' (acc: entry: acc // (processEntry entry.name entry.value)) { } (
+          inputs.nixpkgs.lib.mapAttrsToList (name: value: { inherit name value; }) entries
+        );
 
       # An attribute set of all the NixOS modules in ./modules/nixos (including subdirectories).
       nixosModules = findModules ./modules/nixos;
@@ -90,15 +102,25 @@
       homeManagerModules = findModules ./modules/home-manager;
 
       # A filtered array of system names that have a home-manager modules
-      systemNamesWithHomeManager = builtins.filter (system: (callSystem system).hasHomeManager) systemNames;
+      systemNamesWithHomeManager = builtins.filter (
+        system: (callSystem system).hasHomeManager
+      ) systemNames;
 
       # A function that takes a username and a system name and returns whether that user can log in to that system.
       canLoginToSystem = username: system: builtins.elem username (callSystem system).canLogin;
 
       usernames = builtins.map (account: account.username) accounts;
-      usernamesAtHostsWithHomeManager = inputs.nixpkgs.lib.flatten (builtins.map (username: builtins.map (system: if canLoginToSystem username system then "${username}@${system}" else null) systemNamesWithHomeManager) usernames);
+      usernamesAtHostsWithHomeManager = inputs.nixpkgs.lib.flatten (
+        builtins.map (
+          username:
+          builtins.map (
+            system: if canLoginToSystem username system then "${username}@${system}" else null
+          ) systemNamesWithHomeManager
+        ) usernames
+      );
       # A function that returns the account for a given username.
-      accountFromUsername = username: builtins.elemAt (builtins.filter (account: account.username == username) accounts) 0;
+      accountFromUsername =
+        username: builtins.elemAt (builtins.filter (account: account.username == username) accounts) 0;
 
       # A mini-module that configures nixpkgs to use our custom overlay and configuration.
       useCustomNixpkgsNixosModule = {
@@ -115,35 +137,51 @@
       # - its NixOS configuration (nixosConfiguration)
       # - its system architecture (system)
       # - the accounts that can log in to it (canLogin)
-      callSystem = (hostname: import ./systems/${hostname} {
-        # Pass on the inputs and nixosModules.
-        inherit inputs nixosModules hostname useCustomNixpkgsNixosModule useNixvimModule accountFromUsername;
+      callSystem = (
+        hostname:
+        import ./systems/${hostname} {
+          # Pass on the inputs and nixosModules.
+          inherit
+            inputs
+            nixosModules
+            hostname
+            useCustomNixpkgsNixosModule
+            useNixvimModule
+            accountFromUsername
+            ;
 
-        # Pass on a function that returns a filtered list of accounts based on an array of usernames.
-        accountsForSystem = canLogin: builtins.filter (account: builtins.elem account.username canLogin) accounts;
-      });
+          # Pass on a function that returns a filtered list of accounts based on an array of usernames.
+          accountsForSystem =
+            canLogin: builtins.filter (account: builtins.elem account.username canLogin) accounts;
+        }
+      );
     in
     {
       inherit nixosModules homeManagerModules;
 
       # Gets the NixOS configuration for every system in ./systems.
-      nixosConfigurations = inputs.nixpkgs.lib.genAttrs systemNames (hostname: (callSystem hostname).nixosConfiguration);
+      nixosConfigurations = inputs.nixpkgs.lib.genAttrs systemNames (
+        hostname: (callSystem hostname).nixosConfiguration
+      );
 
-      homeConfigurations = inputs.nixpkgs.lib.genAttrs usernamesAtHostsWithHomeManager (username-hostname:
-      	let
-	      username-hostname-split = builtins.split "@" username-hostname;
-	      username = builtins.elemAt username-hostname-split 0;
-	      hostname = builtins.elemAt username-hostname-split 2;
-	      architecture = (callSystem (builtins.head (builtins.filter (system: system == hostname) systemNames))).system;
-	in
-      	inputs.home-manager.lib.homeManagerConfiguration {
-	    pkgs = inputs.nixpkgs.legacyPackages.${architecture};
-	    extraSpecialArgs = {
-	       inherit inputs homeManagerModules useCustomNixpkgsNixosModule;
-	        account = accountFromUsername username;
-	     };
-             modules = [ ./users/${username}.nix ];
-	});
+      homeConfigurations = inputs.nixpkgs.lib.genAttrs usernamesAtHostsWithHomeManager (
+        username-hostname:
+        let
+          username-hostname-split = builtins.split "@" username-hostname;
+          username = builtins.elemAt username-hostname-split 0;
+          hostname = builtins.elemAt username-hostname-split 2;
+          architecture =
+            (callSystem (builtins.head (builtins.filter (system: system == hostname) systemNames))).system;
+        in
+        inputs.home-manager.lib.homeManagerConfiguration {
+          pkgs = inputs.nixpkgs.legacyPackages.${architecture};
+          extraSpecialArgs = {
+            inherit inputs homeManagerModules useCustomNixpkgsNixosModule;
+            account = accountFromUsername username;
+          };
+          modules = [ ./users/${username}.nix ];
+        }
+      );
 
       # Expose packages, specifically the ISO image for install-iso
       packages.x86_64-linux = {

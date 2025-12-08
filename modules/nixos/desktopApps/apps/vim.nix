@@ -13,7 +13,6 @@
       ruby_lsp.enable = true;
     };
 
-
     plugins = {
       cmp.enable = true;
       cmp-treesitter.enable = true;

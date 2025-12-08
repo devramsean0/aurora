@@ -9,8 +9,8 @@
     ./apps/firefox.nix
   ];
   environment.systemPackages = with pkgs; [
-#    slack
-#    discord
+    #    slack
+    #    discord
     flameshot
     libreoffice
     arandr

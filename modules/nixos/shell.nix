@@ -1,4 +1,9 @@
-{ pkgs, lib, accounts, ... }:
+{
+  pkgs,
+  lib,
+  accounts,
+  ...
+}:
 {
   environment.systemPackages = with pkgs; [
     starship
@@ -31,6 +36,6 @@
 
   programs.starship = {
     enable = true;
-    presets = ["pastel-powerline"];    
+    presets = [ "pastel-powerline" ];
   };
 }

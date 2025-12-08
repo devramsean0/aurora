@@ -1,4 +1,9 @@
-{ account, homeManagerModules, useCustomNixpkgsNixosModule, ... }:
+{
+  account,
+  homeManagerModules,
+  useCustomNixpkgsNixosModule,
+  ...
+}:
 {
   imports = with homeManagerModules; [
     useCustomNixpkgsNixosModule
