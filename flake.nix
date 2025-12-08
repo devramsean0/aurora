@@ -7,18 +7,16 @@
 
     home-manager = {
     	url = "github:nix-community/home-manager/release-25.11";
-	inputs.nixpkgs.follows = "nixpkgs";
+    	inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixvim = {
       url = "github:nix-community/nixvim/nixos-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi";
   };
 
-  outputs = { nixpkgs, nixpkgs-unstable, nixos-raspberrypi, home-manager, nixvim, ... }@inputs:
+  outputs = { nixpkgs, nixpkgs-unstable, home-manager, nixvim, ... }@inputs:
     let
       # Which accounts can access which systems is handled per-system.
       accounts = [
