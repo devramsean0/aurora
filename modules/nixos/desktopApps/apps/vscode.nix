@@ -4,6 +4,7 @@
     enable = true;
     extensions = with pkgs.vscode-extensions; [
       github.copilot
+      mkhl.direnv
       wakatime.vscode-wakatime
       rust-lang.rust-analyzer
       jnoortheen.nix-ide
@@ -11,4 +12,5 @@
       github.copilot-chat
     ];
   };
+  programs.direnv.enable = true;
 }

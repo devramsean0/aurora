@@ -51,7 +51,7 @@ in
 
         desktopApps.core
         desktopApps.desktop
-
+        desktopApps.development
         ./hardware.nix
 
       ]

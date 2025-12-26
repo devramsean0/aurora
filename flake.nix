@@ -14,6 +14,11 @@
       url = "github:nix-community/nixvim/nixos-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    supertram-next-departures = {
+      url = "github:devramsean0/supertram-next-departures";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -22,6 +27,7 @@
       nixpkgs-unstable,
       home-manager,
       nixvim,
+      supertram-next-departures,
       ...
     }@inputs:
     let

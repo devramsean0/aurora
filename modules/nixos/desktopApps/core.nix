@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }:
 {
@@ -12,5 +13,7 @@
     acpi
     pkg-config
     gnupg
+
+    inputs.supertram-next-departures.packages.${pkgs.system}.default
   ];
 }
