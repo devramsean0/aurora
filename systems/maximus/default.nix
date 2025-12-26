@@ -47,11 +47,12 @@ in
 
       desktopApps.core
       desktopApps.desktop
+      desktopApps.development
 
       ./hardware.nix
       ./config.nix
 
-    ];
+    ] ++ (if hasHomeManager then [ nixosModules.homeManager ] else [ ]);
   };
   inherit system canLogin hasHomeManager;
 }
