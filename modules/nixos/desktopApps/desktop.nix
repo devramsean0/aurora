@@ -7,6 +7,7 @@
 {
   imports = [
     ./apps/firefox.nix
+    ./apps/thunderbird.nix
   ];
   environment.systemPackages = with pkgs; [
     #    slack
