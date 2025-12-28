@@ -18,7 +18,7 @@
   ];
   boot.kernelModules = [ "kvm-intel" ];
   
-  boot.initrd.luks.devices."cryptroot".bypassWorkqueues = true; # improve performance of encrypted NVME drives
+  boot.initrd.luks.devices."cryptroot".bypassWorkqueues = true; # improve performance of encrypted NVMe drives
 
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
