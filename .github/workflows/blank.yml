@@ -13,4 +13,4 @@ jobs:
       - name: Setup Nix
         uses: cachix/install-nix-action@v31.8.4
       - name: Build ISO
-        run: nix build --extra-experimental-features flakes --extra-experimental-features nix-command \#${{matrix.iso}}
+        run: EXPORT NIXPKGS_ALLOW_UNFREE=1 nix build --extra-experimental-features flakes --extra-experimental-features nix-command \#${{matrix.iso}} --impure
