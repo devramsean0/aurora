@@ -1,49 +1,58 @@
+{ pkgs, lib, accounts, ... }:
 {
-  config,
-  lib,
-  pkgs,
-  usernames,
-  ...
-}:
-{
-  services.xserver = {
-    xkb = {
-      layout = "gb";
-      variant = "";
-    };
-
+  security.polkit.enable = true;
+  
+  services.displayManager.gdm = {
     enable = true;
+    wayland = true;
+  };
 
-    desktopManager = {
-      xterm.enable = false;
-      xfce = {
-        enable = true;
-        noDesktop = true;
-        enableXfwm = false;
-      };
-    };
+  programs.sway = {
+    enable = true;
+  };
 
-    windowManager.i3 = {
-      enable = true;
-      extraPackages = with pkgs; [
-        dmenu
-        i3lock
-        i3blocks
-        rofi
-        xorg.xbacklight
-      ];
-      configFile = ../../config/i3;
-      package = pkgs.i3;
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    nssmdns6 = true;
+    publish = {
+      userServices = true;
+      hinfo = true;
+      workstation = true;
     };
   };
-  services.displayManager.defaultSession = "none+i3";
 
-  # Create i3blocks config directory and symlink for each user
-  # systemd.tmpfiles.rules = lib.flatten (map (username: [
-  #  "d /home/${username}/.config/i3blocks 777 ${username} users -"
-  #  "L+ /home/${username}/.config/i3blocks/top - - - - ${../../config/i3-blocks}"
-  #  "z /home/${username}/.config/i3blocks/top 744 named ${username} -"
-  #]) usernames);
+  # Exclude certain xserver packages.
+  services.xserver.excludePackages = [ pkgs.xterm ];
 
-  environment.etc."config/i3-blocks".source = ../../config/i3-blocks;
+  environment.systemPackages = with pkgs; [
+    ddcutil
+    dmenu
+    alacritty
+    adwaita-icon-theme
+    adwaita-qt
+
+    nerd-fonts.sauce-code-pro
+  ];
+  boot.kernelModules = [ "i2c-dev" ]; # For ddcutil
+
+  qt = {
+    enable = true;
+    style = "adwaita-dark";
+    platformTheme = "gnome";
+  };
+
+  # Symlink fonts into /run/current-system/sw/share/X11/fonts
+  fonts.fontDir.enable = true;
+
+  # High-performance version of D-Bus
+  services.dbus.implementation = "broker";
+
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    GSK_RENDERER = "ngl";
+  };
+
+  # Do not wait for network on boot.
+  systemd.network.wait-online.timeout = 0;
 }

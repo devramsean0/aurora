@@ -8,6 +8,7 @@
   imports = with homeManagerModules; [
     useCustomNixpkgsNixosModule
     git
+    sway
   ];
 
   home.username = account.username;
