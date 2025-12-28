@@ -10,6 +10,7 @@
     ./apps/vscode.nix
   ];
 
+  programs.direnv.enable = true;
   environment.systemPackages = with pkgs; [
     devcontainer
   ];
