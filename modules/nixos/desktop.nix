@@ -1,7 +1,7 @@
 { pkgs, lib, accounts, ... }:
 {
   security.polkit.enable = true;
-  
+
   services.displayManager.gdm = {
     enable = true;
     wayland = true;

@@ -1,4 +1,4 @@
-{ ... }:
+{ config, lib, osConfig ? {}, ... }:
 
 let
   mod = "Mod4";
@@ -7,7 +7,9 @@ let
   ws3 = "3";
   ws4 = "4";
   ws5 = "5";
-in {
+  hostname = osConfig.networking.hostname or "";
+in
+{
   wayland.windowManager.sway = {
     enable = true;
     config = {
@@ -65,6 +67,12 @@ in {
           childBorder = "#0c0c0c";
         };
         background = "#ffffff";
+      };
+
+      input = lib.mkIf (hostname != "maximus") {
+        "*" = {
+          xkb_layout = "gb";
+        };
       };
 
       keybindings = {

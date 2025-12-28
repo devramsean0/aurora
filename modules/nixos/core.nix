@@ -79,6 +79,7 @@ in
             [
               "wheel"
               "dialout"
+              "networkmanager"
             ]
           else
             [ ]
