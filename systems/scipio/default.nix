@@ -39,23 +39,12 @@ in
         fileSystems
         tailscale
         virtualisation
-        desktop
         shell
         git
-        gpg
 
-        hardware.audio
-        hardware.battery
-        hardware.bluetooth
-        hardware.yubikey
-
-        desktopApps.core
-        desktopApps.desktop
-        desktopApps.development
-        
-        ./config.nix
         ./hardware.nix
-
+        ./config.nix
+        
       ]
       ++ (if hasHomeManager then [ nixosModules.homeManager ] else [ ]);
   };
