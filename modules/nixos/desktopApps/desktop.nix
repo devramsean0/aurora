@@ -12,14 +12,22 @@
   environment.systemPackages = with pkgs; [
     #    slack
     #    discord
-    flameshot
     libreoffice
-    arandr
     spotify
     obsidian
     filezilla
     signal-desktop
     starship
     picocom
+    xfce.thunar
+    xfce.ristretto
+
+    slurp
+    wl-clipboard
+    mako
+    grim
+    sway-contrib.grimshot
+
+    ungoogled-chromium
   ];
 }

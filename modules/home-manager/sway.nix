@@ -159,6 +159,11 @@ in
 
         "${mod}+r" = "mode resize";
         "${mod}+Shift+x" = "exec sh -c 'i3lock -c 222222 & sleep 5 && xset dpms force off'";
+
+	# Screenshots
+	"${mod}+Shift+s" = "exec grimshot save screen $screenshot_out";
+	"${mod}+Shift+w" = "exec grimshot  save active $screenshot_out";
+	"${mod}+Shift+a" = "exec grimshot save area $screenshot_out";
       };
 
       modes = {
@@ -180,6 +185,7 @@ in
     };
 
     extraConfig = ''
+      set $screenshot_out "/home/$USER/Pictures/screenshots/screenshot-$(date +"%Y%m%d-%H%M%S").png"
       default_border normal 2
       default_floating_border normal 2
       hide_edge_borders none
