@@ -29,5 +29,6 @@
     sway-contrib.grimshot
 
     ungoogled-chromium
+    kicad
   ];
 }
