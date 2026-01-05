@@ -182,7 +182,7 @@
         inputs.home-manager.lib.homeManagerConfiguration {
           pkgs = inputs.nixpkgs.legacyPackages.${architecture};
           extraSpecialArgs = {
-            inherit inputs homeManagerModules useCustomNixpkgsNixosModule;
+            inherit inputs homeManagerModules useCustomNixpkgsNixosModule hostname;
             account = accountFromUsername username;
           };
           modules = [ ./users/${username}.nix ];

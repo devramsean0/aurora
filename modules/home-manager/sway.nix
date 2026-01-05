@@ -1,4 +1,4 @@
-{ config, lib, osConfig ? {}, ... }:
+{ config, lib, pkgs, hostname ? "", ... }:
 
 let
   mod = "Mod4";
@@ -7,7 +7,7 @@ let
   ws3 = "3";
   ws4 = "4";
   ws5 = "5";
-  hostname = osConfig.networking.hostname or "";
+  isMaximus = hostname == "maximus";
 in
 {
   wayland.windowManager.sway = {
@@ -67,12 +67,6 @@ in
           childBorder = "#0c0c0c";
         };
         background = "#ffffff";
-      };
-
-      input = lib.mkIf (hostname != "maximus") {
-        "*" = {
-          xkb_layout = "gb";
-        };
       };
 
       keybindings = {
@@ -198,6 +192,10 @@ in
       mouse_warping output
       workspace_layout default
       workspace_auto_back_and_forth no
+    '' + lib.optionalString (!isMaximus) ''
+      input "*" {
+        xkb_layout gb
+      }
     '';
   };
 
