@@ -55,4 +55,10 @@
 
   # Do not wait for network on boot.
   systemd.network.wait-online.timeout = 0;
+
+  # Enable xfce for utils without the desktop
+  services.xserver.desktopManager.xfce = {
+    enable = true;
+    noDesktop = true;
+  };
 }

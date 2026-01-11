@@ -92,7 +92,7 @@ in
         "${mod}+semicolon" = "focus right";
 
         "${mod}+Return" = "exec alacritty";
-	"${mod}+d" = "exec dmenu_run";
+	"${mod}+d" = "exec fuzzel";
 
         "${mod}+Shift+0" = "move container to workspace number 10";
         "${mod}+Shift+1" = "move container to workspace number 1";
@@ -275,6 +275,10 @@ in
         margin: 0 2px;
       }
     '';
+  };
+
+  programs.fuzzel = {
+    enable = true;
   };
 }
 

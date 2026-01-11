@@ -19,8 +19,6 @@
     signal-desktop
     starship
     picocom
-    xfce.thunar
-    xfce.ristretto
 
     slurp
     wl-clipboard
@@ -28,7 +26,8 @@
     grim
     sway-contrib.grimshot
 
-    ungoogled-chromium
     kicad
+
+    bambu-studio
   ];
 }
