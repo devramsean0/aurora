@@ -19,6 +19,11 @@
       url = "github:devramsean0/supertram-next-departures";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    apple-silicon = {
+      url = "github:nix-community/nixos-apple-silicon";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -28,6 +33,7 @@
       home-manager,
       nixvim,
       supertram-next-departures,
+      apple-silicon,
       ...
     }@inputs:
     let

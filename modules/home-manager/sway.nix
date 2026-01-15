@@ -8,6 +8,7 @@ let
   ws4 = "4";
   ws5 = "5";
   isMaximus = hostname == "maximus";
+  isTitus = hostname == "titus";
 in
 {
   wayland.windowManager.sway = {
@@ -192,9 +193,15 @@ in
       mouse_warping output
       workspace_layout default
       workspace_auto_back_and_forth no
-    '' + lib.optionalString (!isMaximus) ''
+    '' + lib.optionalString (!isMaximus && !isTitus) ''
       input "*" {
         xkb_layout gb
+      }
+    '' + lib.optionalString (isTitus) ''
+      input "type:keyboard" {
+        xkb_layout "gb"
+	xkb_variant "mac"
+	xkb_options "lv3:ralt_switch"
       }
     '';
   };
