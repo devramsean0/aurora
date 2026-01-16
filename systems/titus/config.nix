@@ -7,5 +7,6 @@
   services.xserver.xkb.model = "apple";
   services.xserver.xkb.options = "lv3:ralt_switch";
 
+  console.keyMap = lib.mkForce "uk";
   console.useXkbConfig = true;
 }
