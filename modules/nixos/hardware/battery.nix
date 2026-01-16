@@ -12,8 +12,8 @@
       RUNTIME_PM_ON_BAT = "auto";
       CPU_ENERGY_PERF_POLICY_ON_AC = "balance_power";
       CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_power";
-      START_CHARGE_THRESH_BAT0=50
-      STOP_CHARGE_THRESH_BAT0=80
+      START_CHARGE_THRESH_BAT0= 50;
+      STOP_CHARGE_THRESH_BAT0= 80;
     };
   };
 }
