@@ -24,6 +24,11 @@
       url = "github:nix-community/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    immich-background-tool = {
+      url = "github:devramsean0/immich-background-tool";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -34,6 +39,7 @@
       nixvim,
       supertram-next-departures,
       apple-silicon,
+      immich-background-tool,
       ...
     }@inputs:
     let
