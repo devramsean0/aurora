@@ -209,5 +209,9 @@ in
   programs.fuzzel = {
     enable = true;
   };
+
+  services.swww = {
+    enable = true;
+  };
 }
 
