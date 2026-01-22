@@ -9,6 +9,7 @@
     useCustomNixpkgsNixosModule
     git
     sway
+    waybar
   ];
 
   home.username = account.username;
