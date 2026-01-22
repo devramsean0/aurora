@@ -149,8 +149,8 @@ in
         "XF86AudioLowerVolume" = "exec --no-startup-id pactl set-sink-volume 0 -5%";
         "XF86AudioMute" = "exec --no-startup-id pactl set-sink-mute 0 toggle";
         "XF86AudioRaiseVolume" = "exec --no-startup-id pactl set-sink-volume 0 +5%";
-        "XF86MonBrightnessDown" = "exec xbacklight -dec 20";
-        "XF86MonBrightnessUp" = "exec xbacklight -inc 20";
+        "XF86MonBrightnessDown" = "exec brightnessctl s 10%-";
+        "XF86MonBrightnessUp" = "exec brightnessctl s +10%";
 
         "${mod}+r" = "mode resize";
         "${mod}+Shift+x" = "exec sh -c 'i3lock -c 222222 & sleep 5 && xset dpms force off'";
