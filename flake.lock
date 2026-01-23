@@ -309,11 +309,11 @@
         "systems": "systems_2"
       },
       "locked": {
-        "lastModified": 1769127794,
-        "narHash": "sha256-qhVVuelttnWDTEr+QxaCH1C+AiaT72/2J3P9CUtmEfQ=",
+        "lastModified": 1769175400,
+        "narHash": "sha256-D5BHni/5QFn0n3hrxHP1W9AGTFMp9ew+Bv++pgMOAa8=",
         "owner": "devramsean0",
         "repo": "immich-background-tool",
-        "rev": "e4c9c5d8d518478a9f5b8433c82df4505f3e6b5c",
+        "rev": "02794abfd4ef8e7dead5c75c97449a02909f7241",
         "type": "github"
       },
       "original": {

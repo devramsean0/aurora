@@ -21,5 +21,6 @@
   services.immich-background-tool = {
     enable = true;
     secretsFile = "/run/agenix/immich";
+    resize-mode = "stretch";
   };
 }

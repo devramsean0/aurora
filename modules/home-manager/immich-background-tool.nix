@@ -21,6 +21,11 @@ in
       type = types.package;
       default = inputs.immich-background-tool.packages.${pkgs.system}.default or (throw "immich-background-tool is not available for ${pkgs.system}");
     };
+
+    resize-mode = mkOption {
+      description = "resize mode for swwww to use";
+      default = "crop";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -32,7 +37,7 @@ in
 
         Service = {
           Type = "oneshot";
-          ExecStart = "${cfg.package}/bin/immich-background-tool ${cfg.secretsFile} --sww-path \"${pkgs.swww}/bin/swww\"";
+          ExecStart = "${cfg.package}/bin/immich-background-tool ${cfg.secretsFile} --swww-path \"${pkgs.swww}/bin/swww\" --resize-mode ${cfg.resize-mode}";
         };
       };
 
