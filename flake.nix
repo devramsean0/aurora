@@ -25,6 +25,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     immich-background-tool = {
       url = "github:devramsean0/immich-background-tool";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -40,6 +45,7 @@
       supertram-next-departures,
       apple-silicon,
       immich-background-tool,
+      agenix,
       ...
     }@inputs:
     let

@@ -50,7 +50,8 @@ in
       shell
       git
       gpg
-
+      agenix
+      
       hardware.audio
       hardware.battery
       hardware.bluetooth

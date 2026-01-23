@@ -2,6 +2,7 @@
   account,
   homeManagerModules,
   useCustomNixpkgsNixosModule,
+  config,
   ...
 }:
 {
@@ -19,6 +20,6 @@
 
   services.immich-background-tool = {
     enable = true;
-    secretsFile = ./.gitkeep;
+    secretsFile = "/run/agenix/immich";
   };
 }

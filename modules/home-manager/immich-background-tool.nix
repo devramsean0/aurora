@@ -32,7 +32,7 @@ in
 
         Service = {
           Type = "oneshot";
-          ExecStart = "${cfg.package}/bin/immich-background-tool ${cfg.secretsFile}";
+          ExecStart = "${cfg.package}/bin/immich-background-tool ${cfg.secretsFile} --sww-path \"${pkgs.swww}/bin/swww\"";
         };
       };
 
@@ -42,12 +42,9 @@ in
         };
 
         Timer = {
-          OnCalendar = "*/5 * * * *";
+          OnCalendar = "*:0/5";
           Persistent = true;
-        };
-
-        Install = {
-          WantedBy = [ "timers.target" ];
+          Unit = "immich-background-tool.service";
         };
       };
     };
