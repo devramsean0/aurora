@@ -41,6 +41,7 @@ in
       shell
       git
       gpg
+      agenix
 
       hardware.audio
       hardware.yubikey
