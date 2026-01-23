@@ -46,6 +46,10 @@ in
           Persistent = true;
           Unit = "immich-background-tool.service";
         };
+
+        Install = {
+          WantedBy = [ "timers.target" ];
+        };
       };
     };
   };
