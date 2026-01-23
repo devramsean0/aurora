@@ -26,6 +26,7 @@
     shellAliases = {
       q = "exit";
       ls = "ls --color=tty -A";
+      agenix = "nix run agenix#agenix -- --identity ~/.config/age/yubikey-identity.txt";
     };
   };
 
