@@ -74,6 +74,18 @@
           proxyPass = "http://100.94.205.86:4434";
         };
       };
+	  "vw.sean.cyou" = {
+        addSSL = true;
+        enableACME = true;
+        quic = true;
+        http3 = true;
+        http3_hq = true;
+
+        locations."/" = {
+          recommendedProxySettings = true;
+          proxyPass = "http://100.94.205.86:4435";
+        };
+      };
     };
   };
 }
