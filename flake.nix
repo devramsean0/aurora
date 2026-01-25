@@ -30,7 +30,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    immich-background-tool = {
+        immich-background-tool = {
       url = "github:devramsean0/immich-background-tool";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -91,10 +91,28 @@
         allowUnfree = true;
       };
 
-      # An array of every system folder in ./systems.
-      systemNames = builtins.attrNames (
-        inputs.nixpkgs.lib.filterAttrs (path: type: type == "directory") (builtins.readDir ./systems)
-      );
+      # Find all system paths (e.g., "hosts/gaius", "isos/install-iso") that have a default.nix
+      findSystems =
+        baseDir:
+        let
+          # Get category directories (hosts, isos, servers)
+          categories = builtins.attrNames (
+            inputs.nixpkgs.lib.filterAttrs (name: type: type == "directory") (builtins.readDir baseDir)
+          );
+          # For each category, get the system directories inside it
+          systemsInCategory = category:
+            let
+              categoryPath = baseDir + "/${category}";
+              systems = builtins.attrNames (
+                inputs.nixpkgs.lib.filterAttrs (name: type: type == "directory") (builtins.readDir categoryPath)
+              );
+            in
+            builtins.map (system: "${category}/${system}") systems;
+        in
+        inputs.nixpkgs.lib.flatten (builtins.map systemsInCategory categories);
+
+      # An array of every system path in ./systems (e.g., "hosts/gaius", "isos/install-iso").
+      systemNames = findSystems ./systems;
 
       # Recursively find all .nix files in a directory and return them as a nested attribute set.
       findModules =
@@ -162,8 +180,12 @@
       # - its system architecture (system)
       # - the accounts that can log in to it (canLogin)
       callSystem = (
-        hostname:
-        import ./systems/${hostname} {
+        systemPath:
+        let
+          # Extract just the hostname (last component) from paths like "isos/install-iso"
+          hostname = inputs.nixpkgs.lib.last (inputs.nixpkgs.lib.splitString "/" systemPath);
+        in
+        import ./systems/${systemPath} {
           # Pass on the inputs and nixosModules.
           inherit
             inputs
@@ -210,8 +232,8 @@
       # Expose packages, specifically the ISO image for install-iso
       packages.x86_64-linux = {
         # Build the install-iso as a package
-        install-iso = (callSystem "install-iso").nixosConfiguration.config.system.build.isoImage;
-        desktop-iso = (callSystem "desktop-iso").nixosConfiguration.config.system.build.isoImage;
+        install-iso = (callSystem "isos/install-iso").nixosConfiguration.config.system.build.isoImage;
+        desktop-iso = (callSystem "isos/desktop-iso").nixosConfiguration.config.system.build.isoImage;
       };
     };
 }
