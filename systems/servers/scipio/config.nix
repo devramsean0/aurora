@@ -1,5 +1,6 @@
 { config, virtualMachines ? [],... }:
 {
+  boot.initrd.luks.devices = lib.mkForce {};
 
   # Dynamically configure MicroVMs from the virtual-machines array
   microvm.vms = builtins.listToAttrs (map (vm: {
