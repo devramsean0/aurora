@@ -125,21 +125,24 @@
       # An attribute set of all the NixOS modules in ./modules/home-manager (including subdirectories).
       homeManagerModules = findModules ./modules/home-manager;
 
-      # A filtered array of system names that have a home-manager modules
-      systemNamesWithHomeManager = builtins.filter (
+      # A filtered array of system paths that have home-manager modules
+      systemPathsWithHomeManager = builtins.filter (
         system: (callSystem system).hasHomeManager
       ) systemNames;
 
-      # A function that takes a username and a system name and returns whether that user can log in to that system.
+      # A function that takes a username and a system path and returns whether that user can log in to that system.
       canLoginToSystem = username: system: builtins.elem username (callSystem system).canLogin;
+
+      # Extract hostname from system path (e.g., "hosts/maximus" -> "maximus")
+      hostnameFromPath = path: inputs.nixpkgs.lib.last (inputs.nixpkgs.lib.splitString "/" path);
 
       usernames = builtins.map (account: account.username) accounts;
       usernamesAtHostsWithHomeManager = inputs.nixpkgs.lib.flatten (
         builtins.map (
           username:
           builtins.map (
-            system: if canLoginToSystem username system then "${username}@${system}" else null
-          ) systemNamesWithHomeManager
+            systemPath: if canLoginToSystem username systemPath then "${username}@${hostnameFromPath systemPath}" else null
+          ) systemPathsWithHomeManager
         ) usernames
       );
       # A function that returns the account for a given username.
@@ -179,13 +182,24 @@
             canLogin: builtins.filter (account: builtins.elem account.username canLogin) accounts;
         }
       );
+
+      # Create a mapping from hostname to system path
+      hostnameToPath = inputs.nixpkgs.lib.listToAttrs (
+        builtins.map (path: {
+          name = hostnameFromPath path;
+          value = path;
+        }) systemNames
+      );
+
+      # List of just hostnames (for nixosConfigurations keys)
+      hostnames = builtins.attrNames hostnameToPath;
     in
     {
       inherit nixosModules homeManagerModules;
 
       # Gets the NixOS configuration for every system in ./systems.
-      nixosConfigurations = inputs.nixpkgs.lib.genAttrs systemNames (
-        hostname: (callSystem hostname).nixosConfiguration
+      nixosConfigurations = inputs.nixpkgs.lib.genAttrs hostnames (
+        hostname: (callSystem hostnameToPath.${hostname}).nixosConfiguration
       );
 
       homeConfigurations = inputs.nixpkgs.lib.genAttrs usernamesAtHostsWithHomeManager (
@@ -195,7 +209,7 @@
           username = builtins.elemAt username-hostname-split 0;
           hostname = builtins.elemAt username-hostname-split 2;
           architecture =
-            (callSystem (builtins.head (builtins.filter (system: system == hostname) systemNames))).system;
+            (callSystem hostnameToPath.${hostname}).system;
         in
         inputs.home-manager.lib.homeManagerConfiguration {
           pkgs = inputs.nixpkgs.legacyPackages.${architecture};
@@ -210,8 +224,8 @@
       # Expose packages, specifically the ISO image for install-iso
       packages.x86_64-linux = {
         # Build the install-iso as a package
-        install-iso = (callSystem "install-iso").nixosConfiguration.config.system.build.isoImage;
-        desktop-iso = (callSystem "desktop-iso").nixosConfiguration.config.system.build.isoImage;
+        install-iso = (callSystem "isos/install-iso").nixosConfiguration.config.system.build.isoImage;
+        desktop-iso = (callSystem "isos/desktop-iso").nixosConfiguration.config.system.build.isoImage;
       };
     };
 }
