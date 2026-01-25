@@ -30,14 +30,20 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-        immich-background-tool = {
+    immich-background-tool = {
       url = "github:devramsean0/immich-background-tool";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    microvm = {
+      url = "github:microvm-nix/microvm.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
   outputs =
     {
+      self,
       nixpkgs,
       nixpkgs-unstable,
       home-manager,
@@ -46,6 +52,7 @@
       apple-silicon,
       immich-background-tool,
       agenix,
+      microvm,
       ...
     }@inputs:
     let
@@ -69,6 +76,44 @@
           ];
           trusted = true; # Root access (trusted-user, wheel)
           hashedPassword = "$6$XxzpK4DwPBUdEP48$p/4MlWxtRAi8/l3jw3WftC2AhVHpznJt6O/xAEFnEq9Z71hAUl3.X3g4LcJH3XVhZwnoSLCFfwSHCEZ4QOv5u0";
+        }
+      ];
+
+      virtual-machines = [
+        {
+          name = "immich";
+          autostart = true;
+          vcpu = 4;
+          mem = 4096;
+
+          disks = [
+            {
+              image = "/var/lib/microvms/immich.qcow2";
+              size = 51200; # Size in MB
+              mountPoint = "/";
+            }
+          ];
+
+          interfaces = [
+            {
+              type = "user";
+              id = "vm-immich";
+              mac = "02:00:00:00:00:01";
+            }
+          ];
+
+          forwardPorts = [
+            { from = "host"; host.port = 2222; guest.port = 22; }
+          ];
+
+          shares = [
+            {
+              tag = "tailscale-secret";
+              source = "/run/agenix";
+              mountPoint = "/run/secrets";
+              proto = "virtiofs";
+            }
+          ];
         }
       ];
 
@@ -208,6 +253,7 @@
             useCustomNixpkgsNixosModule
             useNixvimModule
             accountFromUsername
+            virtual-machines
             ;
 
           # Pass on a function that returns a filtered list of accounts based on an array of usernames.

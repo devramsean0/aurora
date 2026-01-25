@@ -3,7 +3,9 @@ let
   sean = "age1yubikey1qgecwkndshtahukxjmht50dscw8m8xywh3gytr35ch0pkph4xtr7s2xc5gj";
   titus = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIf5GYnmoU0fZ6DdS1Wt2dV72Jfuyvf2pkKkEa+tOq1t";
   maximus = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIahHhu4PakXmnYfQ8OIfYBODRLpccFBtU2RrTn+5WnS";
+  scipio = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII6JP+YaksNH9Ertfd1WNdc/1r7sz+eqJWU6ibaB5qm1";
 in
 {
   "immich.age".publicKeys = [ titus backup sean maximus ];
+  "tailscale/servers/exposed.age".publicKeys = [ sean scipio maximus ];
 }

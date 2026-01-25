@@ -6,6 +6,7 @@
   accountsForSystem,
   accountFromUsername,
   hostname,
+  virtual-machines,
   ...
 }:
 let
@@ -21,6 +22,7 @@ in
       inherit inputs accountFromUsername system;
       accounts = accountsForSystem canLogin;
       usernames = canLogin;
+      virtualMachines = virtual-machines;
     };
 
     modules = with nixosModules; [

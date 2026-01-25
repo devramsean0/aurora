@@ -14,5 +14,9 @@
       file = ../../secrets/immich.age;
       owner = "sean";
     };
+
+    tailscale-servers-exposed = {
+      file = ../../secrets/tailscale/servers/exposed.age;
+    };
   };
 }
