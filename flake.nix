@@ -123,7 +123,7 @@
 
           disks = [
             {
-              image = "/var/lib/microvms/immich.qcow2";
+              image = "/var/lib/microvms/public.qcow2";
               size = 50000; # Size in MB
               mountPoint = "/";
             }
