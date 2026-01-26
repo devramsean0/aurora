@@ -115,6 +115,76 @@
             }
           ];
         }
+        {
+          name = "public";
+          autostart = true;
+          vcpu = 4;
+          mem = 4096;
+
+          disks = [
+            {
+              image = "/var/lib/microvms/immich.qcow2";
+              size = 50000; # Size in MB
+              mountPoint = "/";
+            }
+          ];
+
+          interfaces = [
+            {
+              type = "user";
+              id = "vm-public";
+              mac = "02:00:00:00:00:01";
+            }
+          ];
+
+          forwardPorts = [
+            { from = "host"; host.port = 2223; guest.port = 22; }
+          ];
+
+          shares = [
+            {
+              tag = "tailscale-secret";
+              source = "/run/agenix";
+              mountPoint = "/run/secrets";
+              proto = "virtiofs";
+            }
+          ];
+        }
+        {
+          name = "vaultwarden";
+          autostart = true;
+          vcpu = 2;
+          mem = 2000;
+
+          disks = [
+            {
+              image = "/var/lib/microvms/vaultwarden.qcow2";
+              size = 40000; # Size in MB
+              mountPoint = "/";
+            }
+          ];
+
+          interfaces = [
+            {
+              type = "user";
+              id = "vm-vaultwarden";
+              mac = "02:00:00:00:00:01";
+            }
+          ];
+
+          forwardPorts = [
+            { from = "host"; host.port = 2224; guest.port = 22; }
+          ];
+
+          shares = [
+            {
+              tag = "tailscale-secret";
+              source = "/run/agenix";
+              mountPoint = "/run/secrets";
+              proto = "virtiofs";
+            }
+          ];
+        }
       ];
 
       # Packages in nixpkgs that I want to override.
