@@ -45,7 +45,7 @@ in
 	      agenix
         git
 
-        virtualisation.autoupgrade
+        vm.autoupgrade
 
         inputs.microvm.nixosModules.host
 
