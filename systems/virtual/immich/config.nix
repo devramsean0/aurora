@@ -1,14 +1,6 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 {
   services.tailscale.useRoutingFeatures = "client";
-
-  # Enable auto upgrade
-  system.autoUpgrade = {
-    enable = true;
-    allowReboot = true;
-    dates = "daily";
-    flake = "github:devramsean0/aurora";
-  };
 
   services.tailscaleJoin = {
     secretsFile = "/run/secrets/tailscale-servers-exposed";
@@ -16,8 +8,21 @@
     ssh = true;
   };
 
-  services.openssh = {
-    settings.PasswordAuthentication = lib.mkForce false;
-    settings.KbdInteractiveAuthentication = lib.mkForce false;
-  };
+  # Setup SMB share for photos
+  environment.systemPackages = with pkgs; [
+    cifs-utils
+  ];
+
+  #fileSystems."/mnt/library" = {
+  #  device = "//192.168.1.123/Volume2/Immich-Media";
+  #  fsType = "cifs";
+  #  options = let
+      # this line prevents hanging on network split
+  #    automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+
+  #    in ["${automount_opts},credentials=/etc/nixos/smb-secrets"];
+  #};
+
+  services.immich.enable = true;
+  services.immich.port = 2283;
 }

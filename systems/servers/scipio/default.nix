@@ -42,8 +42,10 @@ in
         tailscale
         virtualisation
         shell
-	agenix
+	      agenix
         git
+
+        virtualisation.autoupgrade
 
         inputs.microvm.nixosModules.host
 
