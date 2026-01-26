@@ -1,5 +1,6 @@
-{ config, virtualMachines ? [],... }:
+{ inputs, lib, config, virtualMachines ? [],... }:
 {
+  services.tailscale.useRoutingFeatures = "server";
   boot.initrd.luks.devices = lib.mkForce {};
 
   # Dynamically configure MicroVMs from the virtual-machines array
@@ -10,4 +11,9 @@
       autostart = vm.autostart or true;
     };
   }) virtualMachines);
+
+  boot.kernel.sysctl = {
+    "net.ipv4.ip_forward" = 1;
+    "net.ipv6.conf.all.forwarding" = 1;
+  };
 }

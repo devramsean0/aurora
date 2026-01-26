@@ -6,6 +6,7 @@
   accountsForSystem,
   accountFromUsername,
   hostname,
+  virtual-machines,
   ...
 }:
 let
@@ -21,6 +22,7 @@ in
       inherit inputs accountFromUsername system;
       accounts = accountsForSystem canLogin;
       usernames = canLogin;
+      virtualMachines = virtual-machines;
     };
 
     modules =
@@ -40,6 +42,7 @@ in
         tailscale
         virtualisation
         shell
+	agenix
         git
 
         inputs.microvm.nixosModules.host
