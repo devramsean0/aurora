@@ -23,6 +23,10 @@
   #    in ["${automount_opts},credentials=/etc/nixos/smb-secrets"];
   #};
 
-  services.immich.enable = true;
-  services.immich.port = 2283;
+  services.immich = {
+    enable =  true;
+    port = 2283;
+    openFirewall = true;
+    host = "::";
+  };
 }

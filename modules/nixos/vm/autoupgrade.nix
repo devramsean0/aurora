@@ -1,8 +1,9 @@
-{ virtualMachines ? [], ...}:
+{ virtualMachines ? [], inputs, system, pkgs, ...}:
 {
   system.activationScripts.vm-upgrade = {
     text = ''
-      ${builtins.listToAttrs (map (vm: "microvm -R -u ${vm.name}\n") virtualMachines)}
-    ''
-  }
+      export PATH=${pkgs.systemd}/bin:$PATH
+      ${builtins.concatStringsSep "\n" (map (vm: "${inputs.microvm.packages.${system}.microvm}/bin/microvm -R -u ${vm.name}") virtualMachines)}
+    '';
+  };
 }
