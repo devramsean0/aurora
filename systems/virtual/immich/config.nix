@@ -8,15 +8,13 @@
     ssh = true;
   };
 
-  # Setup SMB share for photos
-  environment.systemPackages = with pkgs; [
-    cifs-utils
-  ];
-
   fileSystems."/mnt/library" = {
     device = "//192.168.1.123/Volume2/Immich-Media";
     fsType = "nfs";
+    options = [ "x-systemd.automount" "noauto" ];
   };
+
+  boot.supportedFilesystems = [ "nfs" ];
 
   services.immich = {
     enable =  true;

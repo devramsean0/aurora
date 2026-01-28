@@ -89,8 +89,8 @@
           disks = [
             {
               image = "/var/lib/microvms/immich.qcow2";
-              size = 51200; # Size in MB
-              mountPoint = "/";
+              size = 60000; # Size in MB
+              mountPoint = "/var";
             }
           ];
 

@@ -4,12 +4,12 @@
   boot.initrd.luks.devices = lib.mkForce {};
 
   # Enable auto upgrade
-  system.autoUpgrade = {
-    enable = true;
-    allowReboot = true;
-    dates = "daily";
-    flake = "github:devramsean0/aurora";
-  };
+  #system.autoUpgrade = {
+  #  enable = true;
+  #  allowReboot = true;
+  #  dates = "daily";
+  #  flake = "github:devramsean0/aurora";
+  #};
 
   # Dynamically configure MicroVMs from the virtual-machines array
   microvm.vms = builtins.listToAttrs (map (vm: {
