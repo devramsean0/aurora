@@ -65,6 +65,7 @@
           # profileicon = ./users/headb.png;
           sshkeys = [
             # TODO: Add SSH keys
+	    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMwFh3BTQGMb/tO71WBntK02FZ4MaF2FfsnTnUXVsNOb"
           ];
           # The first GPG key is used as the default for signing git commits.
           gpgkeys = [
