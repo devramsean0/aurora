@@ -1,6 +1,6 @@
 { ... }:
 {
-  services.tailscale.useRoutingFeatures = "client";
+  services.tailscale.useRoutingFeatures = "server";
 
   # Enable auto upgrade
   system.autoUpgrade = {
