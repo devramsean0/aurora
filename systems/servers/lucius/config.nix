@@ -101,7 +101,7 @@
         http3 = true;
         http3_hq = true;
 
-        extraConfig = """
+        extraConfig = '''
           client_max_body_size 5000M;
           proxy_request_buffering off;
           client_body_buffer_size 1024k;
@@ -117,7 +117,7 @@
           proxy_read_timeout 600s;
           proxy_send_timeout 600s;
           send_timeout 600s;
-        """;
+        '';
 
         locations."/" = {
           recommendedProxySettings = true;
