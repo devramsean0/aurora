@@ -61,4 +61,7 @@
     enable = true;
     noDesktop = true;
   };
+
+  # Enable xdg-portal
+  xdg.portal.wlr.enable = true;
 }
