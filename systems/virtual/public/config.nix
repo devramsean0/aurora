@@ -1,5 +1,9 @@
-{ lib, ... }:
+{ lib, config, inputs, ... }:
 {
+  imports = [
+    inputs.agenix.nixosModules.default
+  ];
+  
   services.tailscale.useRoutingFeatures = "client";
 
   services.tailscaleJoin = {
@@ -8,30 +12,23 @@
     ssh = true;
   };
 
-
-  age.secrets = {
-    sitev4 = {
-      file = ../../secrets/sitev4.age;
-    };
-  };
-
   virtualisation.oci-containers = {
     backend = "docker";
     containers = {
       "sitev4" = {
-        pull = "newer";
+        pull = "always";
         image = "ghcr.io/devramsean0/site-v4:latest";
         autoStart = true;
         ports = [
           "3000:3000"
         ];
         environmentFiles = [
-          age.secrets.sitev4.path
+          "/run/secrets/sitev4"
         ];
         volumes = [
           "/opt/sitev4/db.sqlite3:/app/db.sqlite3"
           "/opt/sitev4/uploads:/uploads"
-        ]
+        ];
       };
     };
   };
