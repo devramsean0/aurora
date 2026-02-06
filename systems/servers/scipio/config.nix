@@ -1,5 +1,8 @@
 { inputs, lib, config, virtualMachines ? [], ... }:
 {
+  imports = [
+    inputs.agenix.nixosModules.default
+  ];
   services.tailscale.useRoutingFeatures = "server";
   boot.initrd.luks.devices = lib.mkForce {};
 
@@ -19,6 +22,13 @@
       autostart = vm.autostart or true;
     };
   }) virtualMachines);
+   
+
+  age.secrets = {
+    sitev4 = {
+      file = ../../../secrets/sitev4.age;
+    };
+  };
 
   boot.kernel.sysctl = {
     "net.ipv4.ip_forward" = 1;
