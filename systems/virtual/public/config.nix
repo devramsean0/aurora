@@ -25,11 +25,11 @@
         environmentFiles = [
           "/run/secrets/sitev4"
         ];
-	environment = {
-	  HOST = "0.0.0.0";
-	  PORT = "3000";
-	  UPLOADS_PATH = "/uploads";
-	};
+        environment = {
+          HOST = "0.0.0.0";
+          PORT = "3000";
+          UPLOADS_PATH = "/uploads";
+        };
         volumes = [
           "/opt/sitev4/db.sqlite3:/app/db.sqlite3"
           "/opt/sitev4/uploads:/uploads"

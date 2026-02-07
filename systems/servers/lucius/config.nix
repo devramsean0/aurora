@@ -42,8 +42,8 @@
         http3_hq = true;
 
         locations."/" = {
-	  recommendedProxySettings = true;
-          proxyPass = "http://100.94.205.86:4433";
+	        recommendedProxySettings = true;
+          proxyPass = "http://public.tail28b34.ts.net:3000";
         };
       };
       "grafana.sean.cyou" = {
