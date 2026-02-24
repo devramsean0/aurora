@@ -18,5 +18,9 @@
     tailscale-servers-exposed = {
       file = ../../secrets/tailscale/servers/exposed.age;
     };
+
+    immich-s3-backup = {
+      file = ../../secrets/s3/immich-s3-backup.age;
+    };
   };
 }
