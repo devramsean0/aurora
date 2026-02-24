@@ -8,5 +8,6 @@ in
 {
   "immich.age".publicKeys = [ titus backup sean maximus ];
   "tailscale/servers/exposed.age".publicKeys = [ sean scipio maximus ];
+  "s3/immich-s3-backup.age".publicKeys = [ sean scipio ];
   "sitev4.age".publicKeys = [ sean scipio ];
 }

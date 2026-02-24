@@ -42,6 +42,7 @@ in
         git
 
         custom.tailscale-join
+        custom.s3-backup
         
         ./config.nix
 
