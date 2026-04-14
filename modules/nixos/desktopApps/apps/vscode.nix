@@ -10,6 +10,7 @@
       jnoortheen.nix-ide
       mkhl.direnv
       github.copilot-chat
+      astro-build.astro-vscode
     ];
   };
   programs.direnv.enable = true;
