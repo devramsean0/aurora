@@ -25,9 +25,10 @@
     mako
     grim
     sway-contrib.grimshot
-
     kicad
 
     bambu-studio
   ];
+
+  programs.steam.enable = true;
 }

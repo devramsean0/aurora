@@ -34,4 +34,15 @@
     "net.ipv4.ip_forward" = 1;
     "net.ipv6.conf.all.forwarding" = 1;
   };
+
+  fileSystems."/mnt/firefly" = {
+    device = "//192.168.1.123/Volume2/Firefly";
+    fsType = "nfs";
+    options = [ "x-systemd.automount" "noauto" ];
+  };
+
+  services.firefly-iii = {
+    enable = true;
+    dataDir = "/mnt/firefly";
+  };
 }
