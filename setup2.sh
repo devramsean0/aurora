@@ -33,10 +33,17 @@ drive1="${drive}${suf}1"
 drive2="${drive}${suf}2"
 drive3="${drive}${suf}3"
 
-cryptsetup luksFormat "$drive1" --label encryptedroot
-cryptsetup open "$drive1" cryptroot
+read -p "With Encryption? (Y/N) " encryption
 
-mkfs.ext4 -L nixos /dev/mapper/cryptroot
+if [[ "$encryption" == Y ]]; then
+
+	cryptsetup luksFormat "$drive1" --label encryptedroot
+	cryptsetup open "$drive1" cryptroot
+
+	mkfs.ext4 -L nixos /dev/mapper/cryptroot
+else
+	mkfs.ext4 -L nixos "$drive1"
+fi
 mkswap -L swap "$drive2"
 mkfs.fat -F 32 -n boot "$drive3"
 
