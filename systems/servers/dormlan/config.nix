@@ -22,7 +22,7 @@
 
     # LAN
     interfaces.ens19.ipv4.addresses = [{
-      address = "192.168.1.1";
+      address = "10.94.69.1";
       prefixLength = 24;
     }];
 
@@ -49,12 +49,12 @@
       bogus-priv = true; # Don't forward to upstream if private dns resolution fails
 
 
-      dhcp-range = "192.168.1.2,192.168.100.254,12h";
+      dhcp-range = "10.94.69.2,10.94.69.254,12h";
       domain = "local=/localnet";
 
       dhcp-option = [
-        "3,192.168.100.1"  # gateway
-        "6,192.168.100.1"  # DNS
+        "3,10.94.69.1"  # gateway
+        "6,10.94.69.1"  # DNS
       ];
 
       server = [
@@ -70,4 +70,10 @@
   };
 
   services.resolved.enable = false;
+
+  # Hack to ensure interfaces are up
+  systemd.services.dnsmasq = {
+    after = ["network-online.target"];
+    wants = ["network-online.target"];
+  };
 }
