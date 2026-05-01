@@ -51,6 +51,7 @@ in
       desktopApps.core
       desktopApps.desktop
       desktopApps.development
+      desktopApps.apps.minecraft
 
       ./hardware.nix
       ./config.nix
