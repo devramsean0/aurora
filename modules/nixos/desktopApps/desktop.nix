@@ -27,7 +27,7 @@
     sway-contrib.grimshot
     kicad
 
-    bambu-studio
+    # bambu-studio
   ];
 
   programs.steam.enable = true;

@@ -2,11 +2,21 @@
 {
   security.polkit.enable = true;
 
-  services.displayManager.gdm = {
+/*   services.displayManager.gdm = {
     enable = true;
-    wayland = true;
+    #wayland = true;
+  };
+ */
+
+  services.displayManager.sddm = {
+    enable = true;
+
+    # Enables experimental Wayland support
+    wayland.enable = true;
   };
 
+  
+  
   programs.sway = {
     enable = true;
   };
@@ -24,6 +34,8 @@
 
   # Exclude certain xserver packages.
   services.xserver.excludePackages = [ pkgs.xterm ];
+
+  hardware.graphics.enable = true;
 
   environment.systemPackages = with pkgs; [
     ddcutil
