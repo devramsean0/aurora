@@ -9,7 +9,7 @@
   ...
 }:
 let
-  system = "x86-linux";
+  system = "x86_64-linux";
   canLogin = [ "sean" ];
   hasHomeManager = true;
 in
