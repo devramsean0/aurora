@@ -45,7 +45,7 @@ in
       bootloader
       fileSystems
       tailscale
-      virtualisation
+#      virtualisation
       desktop
       shell
       git
@@ -62,6 +62,29 @@ in
       desktopApps.development
 
       inputs.apple-silicon.nixosModules.default
+
+      # Hack to override the Asahi Kernel for the FairyDust (external USB Display) with relevant patches
+      ({ pkgs, lib, ... }: {
+        hardware.asahi.overlay = lib.composeExtensions
+          (import "${inputs.apple-silicon}/apple-silicon-support/packages/overlay.nix")
+          (final: prev: {
+            linux-asahi = prev.callPackage
+              ({ lib, buildLinux, linuxPackagesFor, _kernelPatches ? [] }:
+                lib.recurseIntoAttrs (linuxPackagesFor (buildLinux rec {
+                  pname = "linux-asahi";
+                  version = "7.0.13";
+                  modDirVersion = version;
+                  src = final.fetchFromGitHub {
+                    owner = "AsahiLinux";
+                    repo = "linux";
+                    rev = "c83992242bc1e38bfc861a91696534479a2dbdf4";
+                    hash = "sha256-sGcgrrf/rpb8u9dvwiTFdNjp18UyuRhW94biH1WMO5I=";
+                  };
+                  kernelPatches = prev.linux-asahi.kernel.kernelPatches ++ _kernelPatches;
+                })))
+              {};
+          });
+      })
 
       ./hardware.nix
       ./config.nix

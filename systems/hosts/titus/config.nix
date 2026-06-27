@@ -9,4 +9,7 @@
 
   console.keyMap = lib.mkForce "uk";
   console.useXkbConfig = true;
+
+  # forcefully disable steam
+  programs.steam.enable = lib.mkForce false;
 }

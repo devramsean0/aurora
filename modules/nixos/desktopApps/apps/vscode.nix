@@ -11,6 +11,7 @@
       mkhl.direnv
       github.copilot-chat
       astro-build.astro-vscode
+      github.codespaces
     ];
   };
   programs.direnv.enable = true;
