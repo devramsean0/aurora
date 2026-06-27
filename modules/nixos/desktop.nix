@@ -2,21 +2,12 @@
 {
   security.polkit.enable = true;
 
-/*   services.displayManager.gdm = {
+  services.displayManager.gdm = {
     enable = true;
-    #wayland = true;
-  };
- */
-
-  services.displayManager.sddm = {
-    enable = true;
-
-    # Enables experimental Wayland support
-    wayland.enable = true;
+    wayland = true;
   };
 
-  
-  
+
   programs.sway = {
     enable = true;
   };
