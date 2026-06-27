@@ -9,7 +9,7 @@
   ...
 }:
 let
-  system = "arm64-linux";
+  system = "aarch64-linux";
   canLogin = [ "sean" ];
   hasHomeManager = true;
 in

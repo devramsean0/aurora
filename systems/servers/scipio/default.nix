@@ -12,7 +12,7 @@
 let
   system = "x86_64-linux";
   canLogin = [ "sean" ];
-  hasHomeManager = false;
+  hasHomeManager = true;
 in
 {
   nixosConfiguration = inputs.nixpkgs.lib.nixosSystem {
@@ -29,6 +29,7 @@ in
       with nixosModules;
       [
         useCustomNixpkgsNixosModule
+        useNixvimModule
 
         {
           networking.hostName = hostname;
@@ -40,7 +41,9 @@ in
         fileSystems
         tailscale
         virtualisation
-        agenix
+        shell
+	      agenix
+        git
 
         vm.autoupgrade
 

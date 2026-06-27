@@ -26,10 +26,6 @@ in
   networking.networkmanager.enable = true;
   environment.localBinInPath = true;
 
-                nixpkgs.config.permittedInsecurePackages = [
-                "docker-28.5.2"
-              ];
-
   # Select internationalisation properties.
   i18n.defaultLocale = "en_GB.UTF-8";
   console.keyMap = "uk";
