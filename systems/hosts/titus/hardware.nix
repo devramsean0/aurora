@@ -21,6 +21,8 @@
   swapDevices = lib.mkForce [];
   services.thermald.enable = lib.mkForce false;
   boot.loader.efi.canTouchEfiVariables = lib.mkForce false;
+  hardware.graphics.enable32Bit = lib.mkForce false;
+
 
   # Charge limits
   services.udev.extraRules = ''

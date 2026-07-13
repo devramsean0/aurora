@@ -29,6 +29,7 @@
   hardware.graphics.enable = true;
 
   environment.systemPackages = with pkgs; [
+    swaylock
     ddcutil
     dmenu
     alacritty
