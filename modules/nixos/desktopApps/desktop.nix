@@ -30,5 +30,5 @@
     # bambu-studio
   ];
 
-  programs.steam.enable = pkgs.hostPlatform.isx86_64;
+  programs.steam.enable = pkgs.stdenv.hostPlatform.isx86_64;
 }
