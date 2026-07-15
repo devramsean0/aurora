@@ -1,7 +1,7 @@
 { lib, ... }:
 {
   services.tailscale.useRoutingFeatures = "client";
-  
+
   services.xserver.xkb.layout = lib.mkForce "gb";
   services.xserver.xkb.variant = "mac";
   services.xserver.xkb.model = "apple";
@@ -9,4 +9,6 @@
 
   console.keyMap = lib.mkForce "uk";
   console.useXkbConfig = true;
+
+  hardware.asahi.enable = true;
 }
