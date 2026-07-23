@@ -4,10 +4,12 @@ let
   titus = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIf5GYnmoU0fZ6DdS1Wt2dV72Jfuyvf2pkKkEa+tOq1t";
   maximus = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIahHhu4PakXmnYfQ8OIfYBODRLpccFBtU2RrTn+5WnS";
   scipio = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII6JP+YaksNH9Ertfd1WNdc/1r7sz+eqJWU6ibaB5qm1";
+  lucius = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL4Cz2WJkW7xF2TWlclkuBZc5dO09iQbY/gE1x8o0ZxB";
 in
 {
   "immich.age".publicKeys = [ titus backup sean maximus ];
   "tailscale/servers/exposed.age".publicKeys = [ sean scipio maximus ];
   "s3/immich-s3-backup.age".publicKeys = [ sean scipio ];
   "sitev4.age".publicKeys = [ sean scipio ];
+  "pjsip-secrets.age".publicKeys = [ sean lucius ];
 }
