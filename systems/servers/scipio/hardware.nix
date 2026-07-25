@@ -9,4 +9,13 @@
   boot.kernelModules = [ "kvm-intel" "e1000e" ];
 
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+
+  boot.supportedFilesystems = [ "zfs" ]; # Enable ZFS FS
+  networking.hostId = "12345678"; # Apparently required for ZFS
+  boot.zfs.extraPools = [ "vmdisk" ]; # Mount VM disks
+
+  services.zfs = {
+    autoScrub.enable = true;
+  };
 }

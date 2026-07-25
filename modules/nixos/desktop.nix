@@ -42,6 +42,8 @@
     adwaita-icon-theme
     adwaita-qt
 
+    zoom
+
     nerd-fonts.sauce-code-pro
   ];
   boot.kernelModules = [ "i2c-dev" ]; # For ddcutil

@@ -184,7 +184,6 @@
         allow=alaw
         outbound_auth=twilio-auth
         aors=twilio-aor
-        from_domain=seano-us-phone-gateway.pstn.twilio.com
         from_user=+18023556415
         rtp_symmetric=yes
         force_rport=yes
