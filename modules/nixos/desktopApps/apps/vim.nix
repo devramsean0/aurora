@@ -1,8 +1,9 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 {
 
   programs.nixvim = {
     enable = true;
+    nixpkgs.source = inputs.nixpkgs;
     lsp.servers = {
       astro.enable = true;
       cmake.enable = true;

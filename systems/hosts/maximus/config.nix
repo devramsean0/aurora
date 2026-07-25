@@ -6,4 +6,6 @@
   services.xserver.xkb.layout = lib.mkForce "us";
 
   boot.initrd.luks.devices = lib.mkForce {};
+
+  # boot.initrd.systemd.enable = false;
 }

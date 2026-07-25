@@ -2,13 +2,20 @@
 {
   security.polkit.enable = true;
 
-  services.displayManager.gdm = {
-    enable = true;
-    wayland = true;
-  };
+  services.displayManager.gdm.enable = true;
+  services.displayManager.defaultSession = "sway-uwsm";
 
   programs.sway = {
     enable = true;
+  };
+
+  programs.uwsm = {
+    enable = true;
+    waylandCompositors.sway = {
+      prettyName = "Sway";
+      comment = "An i3-compatible Wayland compositor";
+      binPath = "/run/current-system/sw/bin/sway";
+    };
   };
 
   services.avahi = {
@@ -25,12 +32,17 @@
   # Exclude certain xserver packages.
   services.xserver.excludePackages = [ pkgs.xterm ];
 
+  hardware.graphics.enable = true;
+
   environment.systemPackages = with pkgs; [
+    swaylock
     ddcutil
     dmenu
     alacritty
     adwaita-icon-theme
     adwaita-qt
+
+    zoom
 
     nerd-fonts.sauce-code-pro
   ];

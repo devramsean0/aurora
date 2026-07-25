@@ -153,7 +153,7 @@ in
         "XF86MonBrightnessUp" = "exec brightnessctl s +10%";
 
         "${mod}+r" = "mode resize";
-        "${mod}+Shift+x" = "exec sh -c 'i3lock -c 222222 & sleep 5 && xset dpms force off'";
+        "${mod}+Shift+x" = "exec swaylock";
 
 	# Screenshots
 	"${mod}+Shift+s" = "exec grimshot save screen $screenshot_out";

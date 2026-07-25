@@ -27,8 +27,8 @@
     sway-contrib.grimshot
     kicad
 
-    bambu-studio
+    # bambu-studio
   ];
 
-  programs.steam.enable = true;
+  programs.steam.enable = pkgs.stdenv.hostPlatform.isx86_64;
 }

@@ -39,6 +39,7 @@ in
         fileSystems
         tailscale
         git
+        agenix
         
         ./config.nix
         ./hardware.nix

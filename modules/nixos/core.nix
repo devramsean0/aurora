@@ -31,6 +31,10 @@ in
   console.keyMap = "uk";
   services.automatic-timezoned.enable = true;
 
+                nixpkgs.config.permittedInsecurePackages = [
+                "docker-28.5.2"
+              ];
+
   # Standard packages that I want on all machines + minor package allowance
   nixpkgs.config.allowUnfree = true;
   nix.settings = {
