@@ -9,15 +9,16 @@
   };
 
   fileSystems."/mnt/library" = {
-    device = "192.168.1.123:/volume2/Immich Library";
+    device = "outramnas.tail28b34.ts.net:/volume2/Immich Library";
     fsType = "nfs";
     options = [
-       "x-systemd.automount" 
-      "noauto" 
-      "x-systemd.idle-timeout=60" 
-      "x-systemd.requires=network-online.target"
-      "x-systemd.mount-timeout=10s"
       "_netdev"
+      "x-systemd.automount"
+      "x-systemd.idle-timeout=600"
+      "x-systemd.after=tailscaled.service"
+      "x-systemd.requires=tailscaled.service"
+      "nofail"
+      "x-systemd.mount-timeout=30"
     ];
   };
 

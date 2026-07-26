@@ -101,7 +101,7 @@
 
         locations."/" = {
           recommendedProxySettings = true;
-          proxyPass = "http://100.94.205.86:4435";
+          proxyPass = "http://vaultwarden.tail28b34.ts.net";
         };
       };
       "immich.sean.cyou" = {
@@ -135,6 +135,18 @@
           proxyWebsockets = true;
         };
       };
+      "beszel.sean.cyou" = {
+        addSSL = true;
+        enableACME = true;
+        quic = true;
+        http3 = true;
+        http3_hq = true;
+
+        locations."/" = {
+          recommendedProxySettings = true;
+          proxyPass = "http://public.tail28b34.ts.net:8090";
+        };
+      }
     };
   };
 

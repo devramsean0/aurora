@@ -7,4 +7,9 @@
     tags = ["tag:servers" "tag:servers-exposed"];
     ssh = true;
   };
+
+  services.vaultwarden = {
+    enable = true;
+    domain = "https://vw.sean.cyou";
+  };
 }
