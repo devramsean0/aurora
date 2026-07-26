@@ -152,7 +152,7 @@
 
   # Asterisk
 
-  age.secrets.pjsip-secrets = {
+  /* age.secrets.pjsip-secrets = {
     file = ../../secrets/pjsip-secrets.age;
     owner = "asterisk";
     group = "asterisk";
@@ -258,5 +258,5 @@
         rtpend=20000
       '';
     };
-  };
+  }; */
 }
