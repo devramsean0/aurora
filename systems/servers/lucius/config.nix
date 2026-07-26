@@ -101,7 +101,7 @@
 
         locations."/" = {
           recommendedProxySettings = true;
-          proxyPass = "http://vaultwarden.tail28b34.ts.net";
+          proxyPass = "http://vaultwarden.tail28b34.ts.net:8000";
         };
       };
       "immich.sean.cyou" = {
