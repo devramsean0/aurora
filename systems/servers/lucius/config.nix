@@ -146,7 +146,7 @@
           recommendedProxySettings = true;
           proxyPass = "http://public.tail28b34.ts.net:8090";
         };
-      }
+      };
     };
   };
 
