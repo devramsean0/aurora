@@ -89,7 +89,7 @@
 
           disks = [
             {
-              image = "/var/lib/microvms/immich.qcow2";
+              image = "/vmdisk/immich.qcow2";
               size = 60000; # Size in MB
               mountPoint = "/var";
             }
@@ -124,7 +124,7 @@
 
           disks = [
             {
-              image = "/var/lib/microvms/public.qcow2";
+              image = "/vmdisk/public.qcow2";
               size = 50000; # Size in MB
               mountPoint = "/";
             }
@@ -159,7 +159,7 @@
 
           disks = [
             {
-              image = "/var/lib/microvms/vaultwarden.qcow2";
+              image = "/vmdisk/vaultwarden.qcow2";
               size = 40000; # Size in MB
               mountPoint = "/";
             }
