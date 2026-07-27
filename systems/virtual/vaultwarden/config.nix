@@ -10,7 +10,7 @@
 
   services.vaultwarden = {
     enable = true;
-    domain = "https://vw.sean.cyou";
+    domain = "vw.sean.cyou";
     config = {
       ROCKET_ADDRESS = "0.0.0.0";
       ROCKET_PORT = 8000;
