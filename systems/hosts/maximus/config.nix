@@ -8,4 +8,6 @@
   boot.initrd.luks.devices = lib.mkForce {};
 
   # boot.initrd.systemd.enable = false;
+
+  #environment.sessionVariables.MOZ_ENABLE_WAYLAND = "0";
 }

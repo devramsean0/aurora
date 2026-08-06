@@ -42,10 +42,20 @@
     adwaita-icon-theme
     adwaita-qt
 
-    zoom
-
     nerd-fonts.sauce-code-pro
+
+    gsettings-desktop-schemas
+    gtk3
   ];
+
+  programs.dconf.enable = true;
+
+  environment.sessionVariables = {
+    XDG_DATA_DIRS = [
+      "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}"
+      "${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}"
+    ];
+  };
   boot.kernelModules = [ "i2c-dev" ]; # For ddcutil
 
   qt = {

@@ -1,4 +1,4 @@
-{
+x{
   description = "NixOS configuration for my shenanigans";
 
   inputs = {
@@ -85,7 +85,7 @@
           name = "immich";
           autostart = true;
           vcpu = 4;
-          mem = 4096;
+          mem = 8192;
 
           disks = [
             {
