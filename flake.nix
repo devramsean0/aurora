@@ -98,7 +98,7 @@ x{
               image = "/vmdisk/immich.qcow2";
               size = 60000; # Size in MB
               mountPoint = "/var";
-            }
+            },
           ];
 
           interfaces = [
@@ -118,6 +118,12 @@ x{
               tag = "tailscale-secret";
               source = "/run/agenix";
               mountPoint = "/run/secrets";
+              proto = "virtiofs";
+            },
+            {
+              tag = "immichssh";
+              source = "/vmdisk/immich/ssh";
+              mountPoint = "/etc/ssh";
               proto = "virtiofs";
             }
           ];
