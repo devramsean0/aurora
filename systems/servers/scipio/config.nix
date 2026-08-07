@@ -35,4 +35,7 @@
     "net.ipv6.conf.all.forwarding" = 1;
   };
 
+  age.secrets.pjsip-secrets = {
+    file = ../../secrets/trainstationsmap.age;
+  };
 }
