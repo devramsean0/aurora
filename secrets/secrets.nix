@@ -12,4 +12,5 @@ in
   "s3/immich-s3-backup.age".publicKeys = [ sean scipio ];
   "sitev4.age".publicKeys = [ sean scipio ];
   "pjsip-secrets.age".publicKeys = [ sean lucius ];
+  "trainstationmap.age".publicKeys = [ sean scipio ];
 }

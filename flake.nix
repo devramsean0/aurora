@@ -39,6 +39,11 @@ x{
       url = "github:microvm-nix/microvm.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    train-stations-map = {
+      url = "github:devramsean0/TrainStationsMap";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -53,6 +58,7 @@ x{
       immich-background-tool,
       agenix,
       microvm,
+      train-stations-map,
       ...
     }@inputs:
     let

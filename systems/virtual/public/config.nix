@@ -39,4 +39,34 @@
       };
     };
   };
+
+
+  users.users.trainstationmap = {
+    isNormalUser = false;
+    isSystemUser = true;
+    group = "trainstationmap";
+  };
+
+  users.groups.trainstationmap = {};
+
+  systemd.services.train-stations-map = {
+    description = "Train Stations Map service";
+
+    wantedBy = ["multi-user.target"];
+
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${inputs.train-stations-map.packages.${pkgs.system}.train-stations-map}/bin/train-stations-map";
+      Restart = "on-failure";
+      RestartSec = "5s";
+      EnvironmentFile = [
+        "/run/secrets/trainstationmap"
+      ];
+      Environment = [
+        "RUST_LOG=info"
+      ];
+
+      User = "trainstationmap"; 
+    };
+  };
 }
