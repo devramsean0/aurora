@@ -1,4 +1,4 @@
-x{
+{
   description = "NixOS configuration for my shenanigans";
 
   inputs = {
