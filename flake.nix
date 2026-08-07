@@ -98,7 +98,7 @@ x{
               image = "/vmdisk/immich.qcow2";
               size = 60000; # Size in MB
               mountPoint = "/var";
-            },
+            }
           ];
 
           interfaces = [
