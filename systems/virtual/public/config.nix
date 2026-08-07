@@ -12,6 +12,10 @@
     ssh = true;
   };
 
+  environment.systemPackages = [
+    inputs.train-stations-map.packages.${pkgs.system}.train-stations-map/bin/train-stations-map
+  ];
+
   services.beszel.hub.enable = true;
 
   virtualisation.oci-containers = {
@@ -65,6 +69,7 @@
       Environment = [
         "RUST_LOG=info"
       ];
+      WorkingDirectory = "/usr/local/trainstationmap";
 
       User = "trainstationmap"; 
     };
