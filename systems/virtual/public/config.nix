@@ -1,4 +1,4 @@
-{ lib, config, inputs, ... }:
+{ lib, config, inputs, pkgs, ... }:
 {
   imports = [
     inputs.agenix.nixosModules.default
@@ -11,10 +11,6 @@
     tags = ["tag:servers" "tag:servers-exposed"];
     ssh = true;
   };
-
-  environment.systemPackages = [
-    inputs.train-stations-map.packages.${pkgs.system}.train-stations-map/bin/train-stations-map
-  ];
 
   services.beszel.hub.enable = true;
 
