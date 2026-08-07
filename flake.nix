@@ -119,7 +119,7 @@ x{
               source = "/run/agenix";
               mountPoint = "/run/secrets";
               proto = "virtiofs";
-            },
+            }
             {
               tag = "immichssh";
               source = "/vmdisk/immich/ssh";
