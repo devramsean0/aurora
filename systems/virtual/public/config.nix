@@ -56,7 +56,7 @@
 
     serviceConfig = {
       Type = "simple";
-      ExecStart = "${inputs.train-stations-map.packages.${pkgs.system}.train-stations-map}/bin/train-stations-map";
+      ExecStart = "${inputs.train-stations-map.packages.${pkgs.system}.default}/bin/train-stations-map";
       Restart = "on-failure";
       RestartSec = "5s";
       EnvironmentFile = [
