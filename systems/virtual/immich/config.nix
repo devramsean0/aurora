@@ -77,11 +77,26 @@
     };
   };
 
-  services.rinetd = {
+  services.haproxy = {
     enable = true;
 
     config = ''
-      0.0.0.0 2284 127.0.0.1 2285
+      global
+        log stdout format raw local0
+
+      defaults
+        mode http
+        timeout connect 5s
+        timeout client 30s
+        timeout server 30s
+
+      frontend immichframe-front
+        bind 0.0.0.0:2284
+        default_backend immichframe-back
+
+      backend immichframe-back
+        server app 127.0.0.1:2285
     '';
   };
+}
 }
