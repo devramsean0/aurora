@@ -60,4 +60,18 @@
       }
     ];
   };
+
+  # Immich Frame
+  services.immichframe = {
+    enable = true;
+    port = 2284;
+    settings = {
+      Accounts.default = {
+        ImmichServerUrl = "127.0.0.1:2283";
+        ApiKeyFile = "/run/secrets/immichframe";
+      };
+      ShowClock = false;
+      ShowAlbumName = false;
+    };
+  };
 }

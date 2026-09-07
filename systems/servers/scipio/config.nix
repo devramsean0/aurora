@@ -28,6 +28,9 @@
     sitev4 = {
       file = ../../../secrets/sitev4.age;
     };
+    immichframe = {
+      file = ../../../secrets/immichframe.age;
+    };
   };
 
   boot.kernel.sysctl = {

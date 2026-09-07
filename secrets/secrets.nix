@@ -13,4 +13,5 @@ in
   "sitev4.age".publicKeys = [ sean scipio ];
   "pjsip-secrets.age".publicKeys = [ sean lucius ];
   "trainstationmap.age".publicKeys = [ sean scipio ];
+  "immichframe.age".publicKeys = [ sean scipio ];
 }
