@@ -68,12 +68,20 @@
     settings = {
       Accounts = [
         {
-          ImmichServerUrl = "127.0.0.1:2283";
+          ImmichServerUrl = "127.0.0.1:2285";
           ApiKeyFile = "/run/secrets/immichframe";
         }
       ];
       ShowClock = false;
       ShowAlbumName = false;
     };
+  };
+
+  services.rinetd = {
+    enable = true;
+
+    config = ''
+      0.0.0.0 2284 127.0.0.1 2285
+    '';
   };
 }
