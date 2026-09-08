@@ -30,6 +30,7 @@
     port = 2283;
     openFirewall = true;
     host = "::";
+    package = pkgs.unstable.immich;
     mediaLocation = "/mnt/library";
   };
 
@@ -64,6 +65,7 @@
   # Immich Frame
   services.immichframe = {
     enable = true;
+    package = pkgs.unstable.immichframe;
     port = 2285;
     settings = {
       Accounts = [
