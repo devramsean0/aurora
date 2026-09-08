@@ -64,11 +64,11 @@
   # Immich Frame
   services.immichframe = {
     enable = true;
-    port = 2284;
+    port = 2285;
     settings = {
       Accounts = [
         {
-          ImmichServerUrl = "127.0.0.1:2285";
+          ImmichServerUrl = "http://127.0.0.1:2283";
           ApiKeyFile = "/run/secrets/immichframe";
 	  Albums = [
 	    "a196a50b-955d-4b1a-ae7e-41fd1b260773"
@@ -101,5 +101,4 @@
         server app 127.0.0.1:2285
     '';
   };
-}
 }
