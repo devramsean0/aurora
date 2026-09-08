@@ -70,6 +70,9 @@
         {
           ImmichServerUrl = "127.0.0.1:2285";
           ApiKeyFile = "/run/secrets/immichframe";
+	  Albums = [
+	    "a196a50b-955d-4b1a-ae7e-41fd1b260773"
+          ];
         }
       ];
       ShowClock = false;
