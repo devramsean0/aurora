@@ -76,4 +76,11 @@
     after = ["network-online.target"];
     wants = ["network-online.target"];
   };
+
+  # Setup Unifi Self Hosted Server
+  services.unifi = {
+    enable = true;
+    unifiPackage = pkgs.unifi;
+    mongodbPackage = pkgs.mongodb-7_0;
+  };
 }
