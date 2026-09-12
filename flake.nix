@@ -198,6 +198,47 @@
             }
           ];
         }
+        {
+          name = "auth";
+          autostart = true;
+          vcpu = 2;
+          mem = 4096;
+
+          disks = [
+            {
+              image = "/vmdisk/auth.qcow2";
+              size = 30000; # Size in MB
+              mountPoint = "/var";
+            }
+          ];
+
+          interfaces = [
+            {
+              type = "user";
+              id = "vm-auth";
+              mac = "02:00:00:00:00:04";
+            }
+          ];
+
+          forwardPorts = [
+            { from = "host"; host.port = 2225; guest.port = 22; }
+          ];
+
+          shares = [
+            {
+              tag = "tailscale-secret";
+              source = "/run/agenix";
+              mountPoint = "/run/secrets";
+              proto = "virtiofs";
+            }
+            {
+              tag = "authssh";
+              source = "/vmdisk/auth/ssh";
+              mountPoint = "/etc/ssh";
+              proto = "virtiofs";
+            }
+          ];
+        }
       ];
 
       # Packages in nixpkgs that I want to override.

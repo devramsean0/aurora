@@ -14,4 +14,6 @@ in
   "pjsip-secrets.age".publicKeys = [ sean lucius ];
   "trainstationmap.age".publicKeys = [ sean scipio ];
   "immichframe.age".publicKeys = [ sean scipio ];
+  "lldap/admin_pass.age".publicKeys = [ sean scipio ];
+  "lldap/observer_pass.age".publicKeys = [ sean scipio ];
 }

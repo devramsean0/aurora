@@ -159,6 +159,30 @@
           proxyPass = "http://public.tail28b34.ts.net:3001";
         };
       };
+      "auth.sean.cyou" = {
+        addSSL = true;
+        enableACME = true;
+        quic = true;
+        http3 = true;
+        http3_hq = true;
+
+        locations."/" = {
+          recommendedProxySettings = true;
+          proxyPass = "http://auth.tail28b34.ts.net:3000";
+        };
+      };
+      "ldap.auth.sean.cyou" = {
+        addSSL = true;
+        enableACME = true;
+        quic = true;
+        http3 = true;
+        http3_hq = true;
+
+        locations."/" = {
+          recommendedProxySettings = true;
+          proxyPass = "http://auth.tail28b34.ts.net:17170";
+        };
+      };
     };
   };
 

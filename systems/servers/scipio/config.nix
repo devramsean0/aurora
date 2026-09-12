@@ -31,6 +31,12 @@
     immichframe = {
       file = ../../../secrets/immichframe.age;
     };
+    lldapadminpass = {
+      file = ../../../secrets/lldap/admin_pass.age;
+    };
+    lldapobserverpass = {
+      file = ../../../secrets/lldap/observer_pass.age;
+    };
   };
 
   boot.kernel.sysctl = {
