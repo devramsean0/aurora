@@ -27,6 +27,7 @@
 
   services.tinyauth = {
     enable = true;
+    environmentFile = "/run/credentials/tinyauth.service/tinyauth-clients";
 
     settings = {
       APPURL = "https://auth.sean.cyou";
@@ -47,6 +48,7 @@
     ];
     tinyauth.serviceConfig.LoadCredential = [
       "ldap-bind-password:/run/secrets/lldapobserverpass"
+      "tinyauth-clients:/run/secrets/tinyauth-clients"
     ];
   };
 }

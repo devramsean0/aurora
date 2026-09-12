@@ -37,6 +37,9 @@
     lldapobserverpass = {
       file = ../../../secrets/lldap/observer_pass.age;
     };
+    tinyauth-clients = {
+      file = ../../../secrets/tinyauth-clients.age;
+    };
   };
 
   boot.kernel.sysctl = {
