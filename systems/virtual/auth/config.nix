@@ -17,7 +17,7 @@
     database.type = "postgresql";
     settings = {
       ldap_base_dn = "dc=sean,dc=cyou";
-      ldap_user_email = "me@sean.cyou";
+      ldap_user_email = "admin@sean.cyou";
       http_url = "https://ldap.auth.sean.cyou";
       force_ldap_user_pass_reset = "always";
     };
