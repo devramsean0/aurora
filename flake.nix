@@ -44,6 +44,11 @@
       url = "github:devramsean0/TrainStationsMap";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    taut = {
+      url = "github:jeremy46231/taut";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -59,6 +64,7 @@
       agenix,
       microvm,
       train-stations-map,
+      taut,
       ...
     }@inputs:
     let

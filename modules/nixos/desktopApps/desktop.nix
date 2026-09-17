@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }:
 {
@@ -28,6 +29,8 @@
     kicad
 
     # bambu-studio
+  ] ++ [
+    inputs.taut.packages.${pkgs.system}.default
   ];
 
   programs.steam.enable = pkgs.stdenv.hostPlatform.isx86_64;

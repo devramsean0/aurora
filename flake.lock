@@ -503,6 +503,7 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nixvim": "nixvim",
         "supertram-next-departures": "supertram-next-departures",
+        "taut": "taut",
         "train-stations-map": "train-stations-map"
       }
     },
@@ -755,6 +756,26 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "taut": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1789408318,
+        "narHash": "sha256-5fBEl2fCKgCCB+sxu5N8chI7ELZD2OLb64Jku329juI=",
+        "owner": "jeremy46231",
+        "repo": "taut",
+        "rev": "e73e446738881f60da95f4e1d982e2e28049e82b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jeremy46231",
+        "repo": "taut",
         "type": "github"
       }
     },

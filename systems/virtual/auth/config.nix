@@ -39,6 +39,11 @@
       LDAP_INSECURE = true;
       LDAP_BINDPASSWORDFILE = "/run/credentials/tinyauth.service/ldap-bind-password";
       LDAP_GROUPCACHETTL = 300;
+
+      OIDC_CLIENTS_IMMICH_NAME="Immich";
+      OIDC_CLIENTS_IMMICH_TRUSTEDREDIRECTURIS="https://immich.sean.cyou/auth/login,https://immich.sean.cyou/user-settings,https://immich.sean.cyou/api/oauth/mobile-redirect,app.immich:///oauth-callback";
+      OIDC_CLIENTS_SEANCYOUDEV_NAME="sean.cyou dev";
+      OIDC_CLIENTS_SEANCYOUDEV_TRUSTEDREDIRECTURIS="http://127.0.0.1:8080/admin/auth/callback,http://localhost:8080/admin/auth/callback";
     };
   };
 
