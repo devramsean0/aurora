@@ -21,5 +21,13 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.supportedFilesystems = [ "ntfs" ];
 
+  networking = {
+    interfaces = {
+      enp4s0 = {
+        wakeOnLan.enable = true;
+      };
+    };
+  };
+
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
