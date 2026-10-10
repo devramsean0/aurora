@@ -3,7 +3,7 @@
 {
   programs.thunderbird = {
     enable = true;
-    package = pkgs.thunderbird-esr;
+    package = pkgs.thunderbird;
     preferencesStatus = "locked";
 
     preferences = {

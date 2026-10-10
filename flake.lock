@@ -767,11 +767,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1789408318,
-        "narHash": "sha256-5fBEl2fCKgCCB+sxu5N8chI7ELZD2OLb64Jku329juI=",
+        "lastModified": 1790954081,
+        "narHash": "sha256-d/qQD/7XQkJaj1nlWxDe8V2YOVIFz3yG1NTE4khEt+I=",
         "owner": "jeremy46231",
         "repo": "taut",
-        "rev": "e73e446738881f60da95f4e1d982e2e28049e82b",
+        "rev": "71db0ec5a992723a8bc9aef03f06b68ac20bbf76",
         "type": "github"
       },
       "original": {
