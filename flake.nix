@@ -86,6 +86,8 @@
           ];
           groups = [
             "libvirtd"
+	    "scanner"
+	    "lp"
           ];
           trusted = true; # Root access (trusted-user, wheel)
           hashedPassword = "$6$XxzpK4DwPBUdEP48$p/4MlWxtRAi8/l3jw3WftC2AhVHpznJt6O/xAEFnEq9Z71hAUl3.X3g4LcJH3XVhZwnoSLCFfwSHCEZ4QOv5u0";

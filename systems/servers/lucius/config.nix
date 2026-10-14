@@ -166,6 +166,9 @@
         http3 = true;
         http3_hq = true;
 
+        extraConfig = ''
+          proxy_set_header X-Forwarded-Host $host;
+        '';
         locations."/" = {
           recommendedProxySettings = true;
           proxyPass = "http://auth.tail28b34.ts.net:3000";

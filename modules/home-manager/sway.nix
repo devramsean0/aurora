@@ -210,7 +210,7 @@ in
     enable = true;
   };
 
-  services.swww = {
+  services.awww = {
     enable = true;
   };
 }

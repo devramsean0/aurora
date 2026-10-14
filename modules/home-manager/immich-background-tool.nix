@@ -37,7 +37,7 @@ in
 
         Service = {
           Type = "oneshot";
-          ExecStart = "${cfg.package}/bin/immich-background-tool ${cfg.secretsFile} --swww-path \"${pkgs.swww}/bin/swww\" --resize-mode ${cfg.resize-mode}";
+          ExecStart = "${cfg.package}/bin/immich-background-tool ${cfg.secretsFile} --swww-path \"${pkgs.awww}/bin/awww\" --resize-mode ${cfg.resize-mode}";
         };
       };
 

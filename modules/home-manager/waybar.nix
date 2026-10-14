@@ -21,7 +21,14 @@
           "battery"
           "network"
           "clock"
+          "tray"
         ];
+        "tray" = {
+          icon-size = 16;
+          max-icon-size = 16;
+          spacing = 10;
+
+        };
         "clock" = { format = "{:%a %b %d %H:%M}"; };
         "pulseaudio" = { format = " {volume}%"; };
         "backlight" = { format = " {percent}%"; };

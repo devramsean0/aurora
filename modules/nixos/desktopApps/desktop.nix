@@ -10,7 +10,7 @@
   imports = [
     ./apps/firefox.nix
     ./apps/thunderbird.nix
-    ./apps/spotify.nix
+    #./apps/spotify.nix
   ];
   environment.systemPackages = with pkgs; [
     #    slack

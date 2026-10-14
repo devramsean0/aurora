@@ -12,6 +12,7 @@
     sway
     waybar
     immich-background-tool
+    kde-connect
   ];
 
   home.username = account.username;

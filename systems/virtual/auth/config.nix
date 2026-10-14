@@ -50,6 +50,7 @@
       OIDC_CLIENTS_WOL_NAME="WOL (Upsnap)";
       OIDC_CLIENTS_WOL_TRUSTEDREDIRECTURIS="https://wol.sean.cyou/api/oauth2-redirect";
       APPS_WOL_LDAP_GROUPS="homelab";
+      APPS_WOL_CONFIG_DOMAIN="wol.sean.cyou";
     };
   };
 
