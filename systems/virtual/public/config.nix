@@ -71,4 +71,34 @@
       User = "trainstationmap"; 
     };
   };
+
+  users.users.routeboard = {
+    isNormalUser = false;
+    isSystemUser = true;
+    group = "routeboard";
+  };
+  users.groups.routeboard = {};
+
+  systemd.services.routeboard = {
+    description = "Routeboard service";
+
+    wantedBy = ["multi-user.target"];
+
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${inputs.routeboard.packages.${pkgs.system}.default}/bin/routeboard-software";
+      Restart = "on-failure";
+      RestartSec = "5s";
+      EnvironmentFile = [
+        "/run/secrets/routeboard"
+      ];
+      Environment = [
+        "RUST_LOG=info"
+        "ADDR=0.0.0.0:3002"
+      ];
+      WorkingDirectory = "/usr/local/routeboard";
+
+      User = "routeboard";
+    };
+  };
 }

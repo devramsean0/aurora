@@ -198,6 +198,18 @@
           proxyPass = "http://wol-appliance.tail28b34.ts.net:8090";
         };
       };
+      "routeboard.sean.cyou" = {
+        addSSL = true;
+        enableACME = true;
+        quic = true;
+        http3 = true;
+        http3_hq = true;
+
+        locations."/" = {
+          recommendedProxySettings = true;
+          proxyPass = "http://public.tail28b34.ts.net:3002";
+        };
+      };
     };
   };
 

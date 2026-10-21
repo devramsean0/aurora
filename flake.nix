@@ -49,6 +49,11 @@
       url = "github:jeremy46231/taut";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    routeboard = {
+      url = "github:devramsean0/routeboard-software";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -65,6 +70,7 @@
       microvm,
       train-stations-map,
       taut,
+      routeboard,
       ...
     }@inputs:
     let

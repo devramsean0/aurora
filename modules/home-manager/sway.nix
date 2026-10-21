@@ -159,9 +159,9 @@ in
 	"${mod}+Shift+s" = "exec grimshot save screen $screenshot_out";
 	"${mod}+Shift+w" = "exec grimshot  save active $screenshot_out";
 	"${mod}+Shift+a" = "exec grimshot save area $screenshot_out";
-	"${mod}+Shift+c+s" = "exec grimshot copy screen";
-	"${mod}+Shift+c+w" = "exec grimshot copy active";
-	"${mod}+Shift+c+a" = "exec grimshot copy area";
+	"${mod}+Alt+s" = "exec grimshot save screen $screenshot_out && wl-copy < $screenshot_out";
+	"${mod}+Alt+w" = "exec grimshot save active $screenshot_out && wl-copy < $screenshot_out";
+	"${mod}+Alt+a" = "exec grimshot save area $screenshot_out && wl-copy < $screenshot_out";
       };
 
       modes = {

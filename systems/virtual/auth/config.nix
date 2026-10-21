@@ -51,6 +51,11 @@
       OIDC_CLIENTS_WOL_TRUSTEDREDIRECTURIS="https://wol.sean.cyou/api/oauth2-redirect";
       APPS_WOL_LDAP_GROUPS="homelab";
       APPS_WOL_CONFIG_DOMAIN="wol.sean.cyou";
+
+      OIDC_CLIENTS_TRAINSTATIONSMAP_NAME="Train Stations Map";
+      OIDC_CLIENTS_TRAINSTATIONSMAP_TRUSTEDREDIRECTURIS="https://train-stations.sean.cyou/api/auth/oidc/callback";
+      APPS_TRAINSTATIONSMAP_LDAP_GROUPS="trainstations";
+      APPS_TRAINSTATIONSMAP_CONFIG_DOMAIN="train-stations.sean.cyou";
     };
   };
 

@@ -40,6 +40,9 @@
     tinyauth-clients = {
       file = ../../../secrets/tinyauth-clients.age;
     };
+    routeboard = {
+      file = ../../../secrets/routeboard.age;
+    };
   };
 
   boot.kernel.sysctl = {

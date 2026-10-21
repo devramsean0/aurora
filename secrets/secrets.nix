@@ -17,4 +17,5 @@ in
   "lldap/admin_pass.age".publicKeys = [ sean scipio ];
   "lldap/observer_pass.age".publicKeys = [ sean scipio ];
   "tinyauth-clients.age".publicKeys = [ sean scipio ];
+  "routeboard.age".publicKeys = [ sean scipio ];
 }
