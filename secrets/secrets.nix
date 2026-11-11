@@ -18,4 +18,5 @@ in
   "lldap/observer_pass.age".publicKeys = [ sean scipio ];
   "tinyauth-clients.age".publicKeys = [ sean scipio ];
   "routeboard.age".publicKeys = [ sean scipio ];
+  "sportsdayscoreboardv2.age".publicKeys = [ sean scipio ];
 }

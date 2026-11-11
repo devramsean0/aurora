@@ -13,6 +13,8 @@
   hardware.asahi.enable = true;
 
   # x86 emulation
-  #boot.binfmt.emulatedSystems = [ "x86_64-linux" ];
-  #nix.settings.extra-platforms = [ "x86_64-linux" ];
+  boot.binfmt = {
+    emulatedSystems = [ "x86_64-linux" ];
+  };
+  nix.settings.extra-platforms = [ "x86_64-linux" ];
 }

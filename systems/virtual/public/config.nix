@@ -37,6 +37,26 @@
           "/opt/sitev4/uploads:/uploads"
         ];
       };
+      "sportsdayscoreboardv2" = {
+	pull = "always";
+	image = "ghcr.io/utcsheffield/sportsday-scoreboard-v2:latest";
+	autoStart = true;
+	ports = [
+	  "3002:3000"
+	];
+	environmentFiles = [
+	  "/run/secrets/sportdayscoreboardv2"
+	];
+	environment = {
+	  HOST = "0.0.0.0";
+	  PORT = "3000";
+	  DB_URL = "./db.sqlite";
+	};
+	volumes = [
+	  "/opt/sportsdayscoreboardv2/db.sqlite:/app/db.sqlite"
+	  "/opt/sportsdauscoreboardv2/version.txt:/app/version.txt"
+	];
+      };
     };
   };
 

@@ -72,13 +72,13 @@ in
               ({ lib, buildLinux, linuxPackagesFor, _kernelPatches ? [] }:
                 lib.recurseIntoAttrs (linuxPackagesFor (buildLinux rec {
                   pname = "linux-asahi";
-                  version = "7.0.13";
+                  version = "7.2.15";
                   modDirVersion = version;
                   src = final.fetchFromGitHub {
                     owner = "AsahiLinux";
                     repo = "linux";
-                    rev = "c83992242bc1e38bfc861a91696534479a2dbdf4";
-                    hash = "sha256-sGcgrrf/rpb8u9dvwiTFdNjp18UyuRhW94biH1WMO5I=";
+                    rev = "432e09dca5d88e145eba6ff6080cd77aa5b8ccf8";
+                    hash = "sha256-oB40IG6UgwgklAO8J09KY8/FPzF5nklvKvZe8A2/2Pg=";
                   };
                   kernelPatches = prev.linux-asahi.kernel.kernelPatches ++ _kernelPatches;
                 })))

@@ -43,7 +43,10 @@
     routeboard = {
       file = ../../../secrets/routeboard.age;
     };
-  };
+    sportsdayscoreboardv2 = {
+      file = ../../../secrets/sportsdayscoreboardv2.age;
+    };
+};
 
   boot.kernel.sysctl = {
     "net.ipv4.ip_forward" = 1;
