@@ -1,5 +1,9 @@
-{ lib, ... }:
+{ lib, inputs, ... }:
 {
+  imports = [
+    inputs.bootvine.nixosModules.default
+  ];
+  services.bootvine.enable = true;
   boot = {
     loader = {
       efi = {
