@@ -46,6 +46,9 @@
     sportsdayscoreboardv2 = {
       file = ../../../secrets/sportsdayscoreboardv2.age;
     };
+    github-login = {
+      file = ../../../secrets/docker/github-login.age;
+    };
 };
 
   boot.kernel.sysctl = {

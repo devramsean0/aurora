@@ -41,11 +41,16 @@
 	pull = "always";
 	image = "ghcr.io/utcsheffield/sportsday-scoreboard-v2:latest";
 	autoStart = true;
+        login = {
+          registry = "ghcr.io";
+          username = "devramsean0";
+          passwordFile = "/run/secrets/github-login";
+        };
 	ports = [
-	  "3002:3000"
+	  "3003:3000"
 	];
 	environmentFiles = [
-	  "/run/secrets/sportdayscoreboardv2"
+	  "/run/secrets/sportsdayscoreboardv2"
 	];
 	environment = {
 	  HOST = "0.0.0.0";
@@ -54,7 +59,7 @@
 	};
 	volumes = [
 	  "/opt/sportsdayscoreboardv2/db.sqlite:/app/db.sqlite"
-	  "/opt/sportsdauscoreboardv2/version.txt:/app/version.txt"
+	  "/opt/sportsdayscoreboardv2/version.txt:/app/version.txt"
 	];
       };
     };

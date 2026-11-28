@@ -19,4 +19,5 @@ in
   "tinyauth-clients.age".publicKeys = [ sean scipio ];
   "routeboard.age".publicKeys = [ sean scipio ];
   "sportsdayscoreboardv2.age".publicKeys = [ sean scipio ];
+  "docker/github-login.age".publicKeys = [ sean scipio ];
 }

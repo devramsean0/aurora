@@ -89,7 +89,7 @@
 
         locations."/" = {
           recommendedProxySettings = true;
-          proxyPass = "http://100.94.205.86:4434";
+          proxyPass = "http://public.tail28b34.ts.net:3003";
         };
       };
       "vw.sean.cyou" = {

@@ -440,5 +440,10 @@
         install-iso = (callSystem "isos/install-iso").nixosConfiguration.config.system.build.isoImage;
         desktop-iso = (callSystem "isos/desktop-iso").nixosConfiguration.config.system.build.isoImage;
       };
+      packages.aarch64-linux = {
+        # Build the install-iso as a package
+        install-iso = (callSystem "isos/install-iso").nixosConfiguration.config.system.build.isoImage;
+        desktop-iso = (callSystem "isos/desktop-iso").nixosConfiguration.config.system.build.isoImage;
+      };
     };
 }
